@@ -135,7 +135,7 @@ h6 {
 --------------------------------------------------------------*/
 /* Base Header */
 header {
-  --background-color: rgba(1, 1, 1, 0.8);
+  --background-color: rgba(1, 1, 1, 1);
   --default-color: #ffffff;
   --heading-color: #ffffff;
   backdrop-filter: blur(7px);
