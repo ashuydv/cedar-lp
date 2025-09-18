@@ -43,6 +43,26 @@
       <!-- Hero Section -->
       <section id="hero" class="hero section dark-background">
         <div class="background-overlay">
+          <picture>
+            <!-- Mobile first -->
+            <source
+              srcset="./assets/img/hero-mb.jpg"
+              media="(max-width: 768px)"
+            />
+            <!-- Desktop -->
+            <source srcset="./assets/img/hero.jpg" media="(min-width: 769px)" />
+            <!-- Fallback -->
+            <img
+              src="./assets/img/hero.jpg"
+              alt="Hero Banner"
+              class="img-fluid"
+            />
+          </picture>
+        </div>
+      </section>
+
+      <!-- <section id="hero" class="hero section dark-background">
+        <div class="background-overlay">
           <img
             class="img-fluid"
             style="
@@ -55,7 +75,7 @@
             src="./assets/img/hero.jpg"
           />
         </div>
-      </section>
+      </section> -->
 
       <header id="header" class="header d-flex align-items-center sticky-top">
         <div
@@ -67,19 +87,21 @@
             <h1 class="sitename">Cedar Festive</h1>
           </a>
 
-          <nav id="navmenu" class="navmenu">
-            <ul>
-              <li><a href="#home" class="active">Home</a></li>
-              <li><a href="#about-navins">About</a></li>
-              <li><a href="#schedule">Schedule</a></li>
-              <li><a href="#featured-artists">Artists</a></li>
-              <li><a href="#location">Venue</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-          </nav>
+          <div class="d-flex align-items-center">
+            <nav id="navmenu" class="navmenu">
+              <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about-navins">About</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#featured-artists">Artists</a></li>
+                <li><a href="#location">Venue</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+              <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
 
-          <a class="btn-getstarted" href="#tickets">Buy Tickets</a>
+            <a class="btn-getstarted" href="#tickets">Buy Tickets</a>
+          </div>
         </div>
       </header>
       <!-- /Hero Section -->
