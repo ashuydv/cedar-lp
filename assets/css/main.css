@@ -11,24 +11,23 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root {
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #40372e; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #281a0c; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #f87500; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --background-color: #ffffff;
+  --default-color: #40372e;
+  --heading-color: #281a0c;
+  --accent-color: #dc2626; /* Changed from #f87500 to red */
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #ffffff; /* The default color of the main navmenu links */
-  --nav-hover-color: #f87500; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #40372e; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #f87500; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #ffffff;
+  --nav-hover-color: #dc2626; /* Changed to red */
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #40372e;
+  --nav-dropdown-hover-color: #dc2626; /* Changed to red */
 }
-
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
 .light-background {
@@ -720,7 +719,6 @@ section,
 
 .hero .countdown div:hover {
   background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -809,7 +807,6 @@ section,
 }
 
 .hero .btn-cta.btn-primary:hover {
-  transform: translateY(-2px);
 }
 
 .hero .btn-cta.btn-secondary {
@@ -819,7 +816,6 @@ section,
 }
 
 .hero .btn-cta.btn-secondary:hover {
-  transform: translateY(-2px);
 }
 
 .hero .cta-note {
@@ -886,7 +882,6 @@ section,
 
 .hero .sponsor-logo:hover {
   opacity: 1;
-  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
@@ -906,6 +901,7 @@ section,
     color-mix(in srgb, var(--accent-color), transparent 90%) 100%
   );
   overflow: hidden;
+  padding: 80px 0px;
 }
 
 .intro::before {
@@ -1023,7 +1019,6 @@ section,
 }
 
 .intro .cta-section .btn.btn-primary:hover {
-  transform: translateY(-3px);
   box-shadow: 0 12px 35px color-mix(in srgb, var(--accent-color), transparent 60%);
 }
 
@@ -1036,7 +1031,6 @@ section,
 .intro .cta-section .btn.btn-outline:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
-  transform: translateY(-3px);
 }
 
 .intro .visual-section {
@@ -1048,7 +1042,6 @@ section,
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 60px color-mix(in srgb, var(--default-color), transparent 85%);
-  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
   transition: all 0.3s ease;
 }
 
@@ -1114,8 +1107,6 @@ section,
 }
 
 .intro .highlight-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
 .intro .highlight-card i {
@@ -1259,8 +1250,6 @@ section,
 }
 
 .featured-speakers .speaker-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 45px 0 color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
 .featured-speakers .speaker-card.featured {
@@ -1304,7 +1293,6 @@ section,
 
 .featured-speakers .speaker-card.featured .speaker-image .speaker-social a:hover {
   background: var(--heading-color);
-  transform: translateY(-3px);
 }
 
 .featured-speakers .speaker-card.featured .speaker-image .speaker-social a i {
@@ -1382,7 +1370,6 @@ section,
 .featured-speakers .speaker-card.featured .speaker-content .btn-speaker:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
-  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -1637,14 +1624,12 @@ section,
 .schedule .schedule-tabs .nav-pills .nav-item .nav-link:hover {
   border-color: var(--accent-color);
   color: var(--accent-color);
-  transform: translateY(-2px);
 }
 
 .schedule .schedule-tabs .nav-pills .nav-item .nav-link.active {
   background: var(--accent-color);
   border-color: var(--accent-color);
   color: var(--contrast-color);
-  transform: translateY(-2px);
 }
 
 .schedule .track-headers {
@@ -1731,11 +1716,6 @@ section,
   box-shadow: 0 4px 20px color-mix(in srgb, var(--default-color), transparent 90%);
   transition: all 0.3s ease;
   border-left: 4px solid transparent;
-}
-
-.schedule .schedule-timeline .time-slot .sessions-row .session-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
 .schedule .schedule-timeline .time-slot .sessions-row .session-card.keynote {
@@ -1971,11 +1951,6 @@ section,
   color: var(--contrast-color);
 }
 
-.schedule .download-cta .cta-buttons .btn.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px color-mix(in srgb, var(--accent-color), transparent 60%);
-}
-
 .schedule .download-cta .cta-buttons .btn.btn-outline-primary {
   border-color: var(--accent-color);
   color: var(--accent-color);
@@ -1984,7 +1959,6 @@ section,
 .schedule .download-cta .cta-buttons .btn.btn-outline-primary:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
-  transform: translateY(-2px);
 }
 
 /*--------------------------------------------------------------
@@ -2072,7 +2046,6 @@ section,
 
 .call-to-action .stat-item:hover .stat-icon {
   background: var(--accent-color);
-  transform: translateY(-2px);
 }
 
 .call-to-action .stat-item:hover .stat-icon i {
@@ -2116,8 +2089,6 @@ section,
 .call-to-action .cta-buttons .btn.btn-primary:hover {
   background: color-mix(in srgb, var(--accent-color), black 15%);
   border-color: color-mix(in srgb, var(--accent-color), black 15%);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .call-to-action .cta-buttons .btn.btn-outline-secondary {
@@ -2130,8 +2101,6 @@ section,
   background: var(--accent-color);
   border-color: var(--accent-color);
   color: var(--contrast-color);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .call-to-action .security-note {
@@ -2244,7 +2213,6 @@ section,
 
 .testimonials .testimonial-item:hover .quote-icon {
   color: var(--accent-color);
-  transform: scale(1.1);
 }
 
 .testimonials .testimonial-header {
@@ -2370,7 +2338,6 @@ section,
 .testimonials .swiper-button-prev:hover,
 .testimonials .swiper-button-next:hover {
   background: color-mix(in srgb, var(--accent-color), var(--heading-color) 20%);
-  transform: scale(1.05);
 }
 
 .testimonials .swiper-button-prev::after,
@@ -2565,7 +2532,6 @@ section,
 }
 
 .gallery .gallery-item:hover img {
-  transform: scale(1.1);
 }
 
 .glightbox-clean .gslide-description {
@@ -2647,7 +2613,6 @@ section,
 
 .about .content .cta-buttons .btn-primary:hover {
   background-color: color-mix(in srgb, var(--accent-color), black 15%);
-  transform: translateY(-2px);
 }
 
 .about .content .cta-buttons .btn-secondary {
@@ -2659,7 +2624,6 @@ section,
 .about .content .cta-buttons .btn-secondary:hover {
   background-color: var(--accent-color);
   color: var(--contrast-color);
-  transform: translateY(-2px);
 }
 
 .about .stats-grid {
@@ -2678,7 +2642,6 @@ section,
 }
 
 .about .stats-grid .stat-card:hover {
-  transform: translateY(-5px);
   box-shadow: 0 10px 30px color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
@@ -2728,12 +2691,10 @@ section,
 
 .about .audience-section .audience-item:hover {
   background-color: var(--surface-color);
-  transform: translateY(-5px);
 }
 
 .about .audience-section .audience-item:hover .audience-icon i {
   color: var(--accent-color);
-  transform: scale(1.1);
 }
 
 .about .audience-section .audience-item .audience-icon {
@@ -2833,7 +2794,6 @@ section,
 .speakers .speakers-list .speaker-profile:hover {
   border-color: var(--accent-color);
   box-shadow: 0 8px 30px color-mix(in srgb, var(--accent-color), transparent 92%);
-  transform: translateY(-3px);
 }
 
 .speakers .speakers-list .speaker-profile:hover .speaker-photo img {
@@ -2952,7 +2912,6 @@ section,
 
 .speakers .speakers-list .speaker-details .speaker-actions .profile-btn:hover {
   background: color-mix(in srgb, var(--accent-color), #000000 15%);
-  transform: translateY(-2px);
 }
 
 .speakers .speakers-list .speaker-details .speaker-actions .speaker-social {
@@ -2977,7 +2936,6 @@ section,
   border-color: var(--accent-color);
   background: var(--accent-color);
   color: var(--contrast-color);
-  transform: translateY(-2px);
 }
 
 @media (max-width: 992px) {
@@ -3186,7 +3144,6 @@ section,
 }
 
 .speaker-details-2 .speaker-profile-card .profile-content .social-connections .social-btn:hover {
-  transform: translateY(-2px);
   box-shadow: 0 5px 15px color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
@@ -3485,7 +3442,6 @@ section,
 .speaker-details-2 .speaker-cta .cta-buttons a.btn-primary:hover {
   background: transparent;
   color: var(--accent-color);
-  transform: translateY(-2px);
 }
 
 .speaker-details-2 .speaker-cta .cta-buttons a.btn-secondary {
@@ -3497,7 +3453,6 @@ section,
 .speaker-details-2 .speaker-cta .cta-buttons a.btn-secondary:hover {
   background: transparent;
   color: var(--heading-color);
-  transform: translateY(-2px);
 }
 
 .speaker-details-2 .speaker-cta .cta-buttons a.btn-outline {
@@ -3510,7 +3465,6 @@ section,
   background: var(--default-color);
   color: var(--background-color);
   border-color: var(--default-color);
-  transform: translateY(-2px);
 }
 
 /*--------------------------------------------------------------
@@ -3528,7 +3482,6 @@ section,
 }
 
 .tickets .ticket-card:hover {
-  transform: translateY(-5px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
@@ -3540,10 +3493,6 @@ section,
     var(--surface-color) 0%,
     color-mix(in srgb, var(--accent-color), transparent 95%) 100%
   );
-}
-
-.tickets .ticket-card.featured:hover {
-  transform: scale(1.05) translateY(-5px);
 }
 
 .tickets .popular-badge {
@@ -3664,7 +3613,6 @@ section,
 .tickets .ticket-footer .btn-ticket:hover {
   background: var(--contrast-color);
   color: var(--accent-color);
-  transform: translateY(-2px);
 }
 
 .tickets .ticket-footer .availability-info {
@@ -3760,7 +3708,6 @@ section,
   }
 
   .tickets .ticket-card.featured:hover {
-    transform: translateY(-5px);
   }
 
   .tickets .ticket-header .ticket-price .amount {
@@ -3882,7 +3829,7 @@ section,
 
 .buy-tickets .ticket-types .ticket-option .ticket-label:hover {
   border-color: color-mix(in srgb, var(--accent-color), transparent 50%);
-  transform: translateY(-2px);
+
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -4102,7 +4049,6 @@ section,
 }
 
 .buy-tickets .form-submit .btn-submit:hover {
-  transform: translateY(-2px);
   box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-color), transparent 70%);
 }
 
@@ -4282,7 +4228,6 @@ section,
 .venue-2 .venue-actions .btn.btn-primary:hover {
   background-color: color-mix(in srgb, var(--accent-color), black 10%);
   border-color: color-mix(in srgb, var(--accent-color), black 10%);
-  transform: translateY(-2px);
 }
 
 .venue-2 .venue-actions .btn.btn-outline-primary {
@@ -4293,7 +4238,6 @@ section,
 .venue-2 .venue-actions .btn.btn-outline-primary:hover {
   background-color: var(--accent-color);
   color: var(--contrast-color);
-  transform: translateY(-2px);
 }
 
 .venue-2 .venue-map h4 {
@@ -4323,7 +4267,6 @@ section,
 }
 
 .venue-2 .travel-info:hover {
-  transform: translateY(-5px);
 }
 
 .venue-2 .travel-info .travel-icon {
@@ -4368,7 +4311,6 @@ section,
 }
 
 .venue-2 .accommodation-section .hotel-card:hover {
-  transform: translateY(-5px);
 }
 
 .venue-2 .accommodation-section .hotel-card img {
@@ -4460,7 +4402,6 @@ section,
 }
 
 .sponsors .client-logo:hover img {
-  transform: scale(1.1);
 }
 
 /*--------------------------------------------------------------
@@ -4481,7 +4422,6 @@ section,
 }
 
 .contact .contact-info-box:hover {
-  transform: translateY(-5px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -4631,7 +4571,7 @@ section,
 
 .contact .contact-form-wrapper .btn-submit:hover {
   background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
-  transform: translateY(-3px);
+
   box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-color), transparent 60%);
 }
 
@@ -4984,7 +4924,6 @@ section,
 }
 
 .terms-of-service .tos-contact .contact-box .contact-content .contact-link:hover {
-  transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -5284,7 +5223,6 @@ section,
 
 .error-404 .error-action .btn-primary:hover {
   background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
-  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -5336,7 +5274,6 @@ section,
 }
 
 .recent-projects .project-card:hover {
-  transform: translateY(-8px);
   box-shadow: 0 20px 50px color-mix(in srgb, var(--default-color), transparent 80%);
   border-color: color-mix(in srgb, var(--accent-color), transparent 70%);
 }
@@ -5507,7 +5444,7 @@ section,
 .recent-projects .project-actions .btn-primary:hover {
   background: color-mix(in srgb, var(--accent-color), #000000 15%);
   border-color: color-mix(in srgb, var(--accent-color), #000000 15%);
-  transform: translateY(-2px);
+
   box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-color), transparent 70%);
 }
 
@@ -5520,7 +5457,6 @@ section,
 .recent-projects .project-actions .btn-outline-primary:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
-  transform: translateY(-2px);
 }
 
 /* View All Projects Button */
@@ -5539,7 +5475,6 @@ section,
 }
 
 .recent-projects .btn-lg:hover {
-  transform: translateY(-3px);
   box-shadow: 0 15px 40px color-mix(in srgb, var(--accent-color), transparent 60%);
 }
 
@@ -5675,7 +5610,6 @@ section,
 }
 
 .team .team-card:hover {
-  transform: translateY(-10px);
   box-shadow: 0 20px 50px color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
@@ -5760,7 +5694,6 @@ section,
 }
 
 .team .social-link:hover {
-  transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -5797,7 +5730,6 @@ section,
 }
 
 .event-gallery .gallery-item:hover {
-  transform: translateY(-8px);
   box-shadow: 0 15px 40px color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
@@ -5809,7 +5741,6 @@ section,
 }
 
 .event-gallery .gallery-item:hover img {
-  transform: scale(1.1);
 }
 
 .event-gallery .gallery-overlay {
@@ -6008,7 +5939,6 @@ section,
 }
 
 .why-choose .feature-item:hover {
-  transform: translateX(10px);
   box-shadow: 0 8px 25px color-mix(in srgb, var(--default-color), transparent 90%);
   border-color: color-mix(in srgb, var(--accent-color), transparent 80%);
 }
@@ -6135,7 +6065,7 @@ section,
 
 .contact-cta .btn-cta:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 15%);
-  transform: translateY(-3px);
+
   box-shadow: 0 10px 30px rgba(248, 117, 0, 0.4);
 }
 
@@ -6224,7 +6154,7 @@ section,
   position: absolute;
   top: 15px;
   left: 15px;
-  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #ff6b6b 30%));
+  background: linear-gradient(135deg, #dc2626, color-mix(in srgb, #dc2626, #ef4444 30%));
   color: var(--contrast-color);
   padding: 6px 12px;
   border-radius: 20px;
@@ -6275,7 +6205,6 @@ section,
 .featured-speakers .speaker-social .social-link:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
-  transform: scale(1.1);
 }
 
 /* Speaker Stats */
@@ -6430,14 +6359,12 @@ section,
 }
 
 .featured-speakers .cta-buttons .btn-primary {
-  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #000000 15%));
-  border-color: var(--accent-color);
+  background: linear-gradient(135deg, #dc2626, color-mix(in srgb, #dc2626, #000000 15%));
+  border-color: #dc2626;
   color: var(--contrast-color);
-  box-shadow: 0 8px 25px color-mix(in srgb, var(--accent-color), transparent 70%);
+  box-shadow: 0 8px 25px color-mix(in srgb, #dc2626, transparent 70%);
 }
-
 .featured-speakers .cta-buttons .btn-primary:hover {
-  transform: translateY(-3px);
   box-shadow: 0 12px 35px color-mix(in srgb, var(--accent-color), transparent 60%);
 }
 
@@ -6450,7 +6377,6 @@ section,
 .featured-speakers .cta-buttons .btn-outline-primary:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
-  transform: translateY(-3px);
 }
 
 .featured-speakers .cta-highlight {
@@ -6621,7 +6547,7 @@ section,
 }
 
 .featured-speakers .section-title h2 {
-  color: #b83c3c;
+  color: #dc2626; /* Changed from #b83c3c to primary red */
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
@@ -6649,7 +6575,6 @@ section,
 }
 
 .featured-speakers .artist-card:hover {
-  transform: translateY(-8px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
   border-color: #e0e0e0;
 }
@@ -6678,7 +6603,7 @@ section,
 
 .featured-speakers .artist-category {
   display: inline-block;
-  background: #f0b85c;
+  background: #dc2626;
   color: #ffffff;
   padding: 6px 16px;
   border-radius: 20px;
@@ -6690,7 +6615,7 @@ section,
 }
 
 .featured-speakers .artist-name {
-  color: #b83c3c;
+  color: #dc2626;
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 15px;
