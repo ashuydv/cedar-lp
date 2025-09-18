@@ -105,6 +105,31 @@
       </section> -->
       <!-- /Hero Section -->
 
+      <section class="event-stats">
+        <div class="container">
+          <div class="stats-row">
+            <div class="stat-item">
+              <div class="stat-number" id="days">00</div>
+              <div class="stat-label">Days</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-number" id="hours">00</div>
+              <div class="stat-label">Hours</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-number" id="minutes">00</div>
+              <div class="stat-label">Minutes</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-number" id="seconds">00</div>
+              <div class="stat-label">Seconds</div>
+            </div>
+          </div>
+        </div>
+      </section>
       <!-- Intro Section -->
       <section id="intro" class="intro section">
         <div class="container">
@@ -118,14 +143,14 @@
                   grand finale. A night where music transcends boundaries and
                   hearts connect through rhythm.
                 </p>
-                <p>
+                <!-- <p>
                   Join us for this spectacular musical journey featuring
                   renowned artists Saindhavi, Sridhar Sena, Prasanna, and
                   Haripriya. From soulful melodies to energetic beats, this
                   festive night promises pure entertainment and magical moments.
-                </p>
+                </p> -->
 
-                <div class="stats-grid">
+                <!-- <div class="stats-grid">
                   <div class="stat-item">
                     <div class="stat-number">1</div>
                     <div class="stat-label">Epic Night</div>
@@ -142,7 +167,7 @@
                     <div class="stat-number">2000+</div>
                     <div class="stat-label">Music Lovers</div>
                   </div>
-                </div>
+                </div> -->
 
                 <div class="cta-section">
                   <a href="#tickets" class="btn btn-primary"
@@ -163,14 +188,14 @@
                     alt="Cedar Festive Night"
                     class="img-fluid"
                   />
-                  <div class="gradient-overlay"></div>
+                  <!-- <div class="gradient-overlay"></div> -->
                   <div class="floating-badge">
                     <i class="bi bi-calendar-event"></i>
                     <span>Sept 26, 2025</span>
                   </div>
                 </div>
 
-                <div class="highlight-cards">
+                <!-- <div class="highlight-cards">
                   <div class="highlight-card">
                     <i class="bi bi-music-note-beamed"></i>
                     <h4>Live Performances</h4>
@@ -184,13 +209,99 @@
                     <h4>Star-Studded Lineup</h4>
                     <p>Four amazing performers in one spectacular evening</p>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
       </section>
       <!-- /Intro Section -->
+
+      <section id="sticky-button-container">
+        <div class="sticky-buttons">
+          <a href="#" class="btn btn-enquire" id="enquire-btn">
+            <span>Enquire Now</span>
+          </a>
+          <a href="tel:+1234567890" class="btn btn-call">
+            <span>Call Us</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Enquiry Popup Modal -->
+      <!-- Enquiry Popup Modal -->
+      <div id="enquiry-modal" class="modal-overlay">
+        <div class="modal-container">
+          <div class="modal-close-btn" id="modal-close">&times;</div>
+
+          <div class="event-register-form">
+            <div class="form-header">
+              <h3>EVENT REGISTER</h3>
+            </div>
+
+            <form id="event-registration" class="registration-form">
+              <!-- Visible Fields -->
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="fullname"
+                  name="name"
+                  placeholder="Name and Surname"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Your Mail Here"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="tel"
+                  id="phone"
+                  name="mobile"
+                  placeholder="Your Phone Number"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <select id="price-tab" name="plan_to_visit" required>
+                  <option value="">Select Your Price Tab</option>
+                  <option value="Early Bird">Early Bird - $99</option>
+                  <option value="Regular">Regular - $149</option>
+                  <option value="VIP Package">VIP Package - $299</option>
+                  <option value="Group Discount">Group Discount - $79</option>
+                </select>
+              </div>
+
+              <!-- Hidden Tracking Fields -->
+              <input type="hidden" name="timestamp" id="timestamp" />
+              <input type="hidden" name="source" id="source" />
+              <input type="hidden" name="campaign" id="campaign" />
+              <input type="hidden" name="channel" id="channel" />
+              <input type="hidden" name="keyword" id="keyword" />
+              <input type="hidden" name="placement" id="placement" />
+              <input type="hidden" name="device" id="device" />
+              <input type="hidden" name="medium" id="medium" />
+              <input type="hidden" name="gclid" id="gclid" />
+              <input type="hidden" name="configuration" id="configuration" />
+              <input type="hidden" name="ip_address" id="ip_address" />
+
+              <button type="submit" class="register-btn">
+                REGISTER NOW
+                <i class="bi bi-arrow-right-circle"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
 
       <!-- Featured Artists Section -->
       <section id="featured-artists" class="featured-speakers section">
@@ -211,7 +322,7 @@
               <div class="artist-card">
                 <div class="artist-image">
                   <img
-                    src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop&crop=face"
+                    src="./assets/img/saindhavi.webp"
                     alt="Saindhavi"
                     class="img-fluid"
                   />
@@ -232,9 +343,10 @@
               <div class="artist-card">
                 <div class="artist-image">
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=face"
+                    src="./assets/img/sridhar.webp"
                     alt="Sridhar Sena"
                     class="img-fluid"
+                    style="object-position: top"
                   />
                 </div>
                 <div class="artist-content">
@@ -253,9 +365,10 @@
               <div class="artist-card">
                 <div class="artist-image">
                   <img
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=300&fit=crop&crop=face"
+                    src="./assets/Prasanna.jpg"
                     alt="Prasanna"
                     class="img-fluid"
+                    style="object-position: 50% 80%"
                   />
                 </div>
                 <div class="artist-content">
@@ -274,9 +387,10 @@
               <div class="artist-card">
                 <div class="artist-image">
                   <img
-                    src="https://images.unsplash.com/photo-1494790108755-2616c0763c69?w=400&h=300&fit=crop&crop=face"
+                    src="./assets/4.jpg"
                     alt="Haripriya"
                     class="img-fluid"
+                    style="object-position: 50% 20%"
                   />
                 </div>
                 <div class="artist-content">
@@ -330,40 +444,52 @@
                 </div>
 
                 <!-- Stats Section -->
-                <div class="row text-center mt-5">
-                  <div class="col-md-2 col-6 mb-4">
+                <div
+                  class="row flex align-items-center justify-content-center text-center mt-5"
+                >
+                  <div class="col-md-4 col-12 mb-4">
                     <div class="stats-card">
                       <i class="bi bi-building fs-2"></i>
-                      <h5 class="mt-2 mb-1">125+</h5>
-                      <p class="small mb-0">Projects</p>
+                      <div>
+                        <h5 class="mt-2 mb-1">125+</h5>
+                        <p class="small mb-0">Projects</p>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-2 col-6 mb-4">
+                  <div class="col-md-4 col-12 mb-4">
                     <div class="stats-card">
                       <i class="bi bi-shield-check fs-2"></i>
-                      <h5 class="mt-2 mb-1">1275+</h5>
-                      <p class="small mb-0">Quality Checks</p>
+                      <div>
+                        <h5 class="mt-2 mb-1">1275+</h5>
+                        <p class="small mb-0">Quality Checks</p>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-2 col-6 mb-4">
+                  <div class="col-md-4 col-12 mb-4">
                     <div class="stats-card">
                       <i class="bi bi-emoji-smile fs-2"></i>
-                      <h5 class="mt-2 mb-1">3400+</h5>
-                      <p class="small mb-0">Happy Customers</p>
+                      <div>
+                        <h5 class="mt-2 mb-1">3400+</h5>
+                        <p class="small mb-0">Happy Customers</p>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-2 col-6 mb-4">
+                  <div class="col-md-4 col-12 mb-4">
                     <div class="stats-card">
                       <i class="bi bi-award fs-2"></i>
-                      <h5 class="mt-2 mb-1">60+</h5>
-                      <p class="small mb-0">Awards</p>
+                      <div>
+                        <h5 class="mt-2 mb-1">60+</h5>
+                        <p class="small mb-0">Awards</p>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-4 col-12 mb-4">
                     <div class="stats-card">
                       <i class="bi bi-calendar-check fs-2"></i>
-                      <h5 class="mt-2 mb-1">35</h5>
-                      <p class="small mb-0">Years in Business</p>
+                      <div>
+                        <h5 class="mt-2 mb-1">35</h5>
+                        <p class="small mb-0">Years in Business</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -381,210 +507,93 @@
         <div class="container">
           <!-- Section Title -->
           <div class="section-title">
-            <h2>Our Recent Projects</h2>
+            <h2>Upcoming Projects</h2>
             <p>
-              Discover our latest residential developments that showcase our
-              commitment to quality, innovation, and thoughtful design
+              Live Life Singapore Style with thoughtfully designed 3 BHK homes
+              at Navin's Cedar Tower
             </p>
           </div>
           <!-- End Section Title -->
 
-          <div class="row gy-4">
-            <!-- Project 1 -->
-            <div class="col-lg-3 col-md-6">
+          <div class="flex align-items-center gy-4">
+            <!-- Project: Navin's Cedar -->
+            <div style="max-width: 520px; margin: auto">
               <div class="project-card">
                 <div class="project-image">
                   <img
-                    src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=300&fit=crop"
-                    alt="Navin's HillView Avenue"
+                    src="./assets/img/cedars.jpg"
+                    alt="Navin's Cedar Tower"
                     class="img-fluid"
                   />
                   <div class="project-overlay">
-                    <div class="project-status ready">Ready To Move In</div>
+                    <div class="project-status under-construction">
+                      Under Construction
+                    </div>
                   </div>
                 </div>
                 <div class="project-content">
-                  <h4 class="project-title">Navin's HillView Avenue</h4>
+                  <h4 class="project-title">Navin's Cedar Tower</h4>
                   <div class="project-meta">
                     <span class="project-location">
                       <i class="bi bi-geo-alt"></i>
-                      Baner, Pune
+                      Medavakkam, Chennai
                     </span>
                     <span class="project-type">
                       <i class="bi bi-house"></i>
                       2 & 3 BHK Apartments
                     </span>
                   </div>
-                  <div class="project-features">
-                    <span class="feature-tag">Premium Location</span>
-                    <span class="feature-tag">Modern Amenities</span>
-                    <span class="feature-tag">Vastu Compliant</span>
-                  </div>
-                  <div class="project-price">
-                    <span class="price-label">Starting from</span>
-                    <span class="price-amount">₹85 Lakhs*</span>
-                  </div>
-                  <div class="project-actions">
-                    <a href="#contact" class="btn btn-primary btn-sm"
-                      >View Details</a
-                    >
-                    <a href="#contact" class="btn btn-outline-primary btn-sm"
-                      >Schedule Visit</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <!-- Project 2 -->
-            <div class="col-lg-3 col-md-6">
-              <div class="project-card">
-                <div class="project-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
-                    alt="Navin's Starwood Towers 2.0"
-                    class="img-fluid"
-                  />
-                  <div class="project-overlay">
-                    <div class="project-status ready">Ready To Move In</div>
+                  <div class="project-features">
+                    <span class="feature-tag">Singapore-Style Elevation</span>
+                    <span class="feature-tag">100+ Amenities</span>
+                    <span class="feature-tag">Multi-Purpose Rooms</span>
+                    <span class="feature-tag">Seamless City Connectivity</span>
                   </div>
-                </div>
-                <div class="project-content">
-                  <h4 class="project-title">Navin's Starwood Towers 2.0</h4>
-                  <div class="project-meta">
+
+                  <div class="project-price">
+                    <span class="price-label">Area</span>
+                    <span class="price-amount">1285 – 2140 Sq.ft.</span>
+                  </div>
+
+                  <div class="project-price">
+                    <span class="price-label">Price</span>
+                    <span class="price-amount">Check Price</span>
+                  </div>
+
+                  <div class="project-actions">
+                    <a
+                      href="https://navins.in/landingpage/navin%27s-cedar-starwood-towers/"
+                      class="btn btn-primary btn-sm"
+                      >Know More</a
+                    >
+                    <a
+                      href="./assets/cedar.pdf"
+                      class="btn btn-outline-primary btn-sm"
+                      target="_blank"
+                      download
+                    >
+                      Download Brochure
+                    </a>
+                  </div>
+
+                  <div class="project-meta" style="margin-top: 10px">
                     <span class="project-location">
-                      <i class="bi bi-geo-alt"></i>
-                      Hinjewadi, Pune
+                      <i class="bi bi-file-text"></i>
+                      RERA Registered
                     </span>
                     <span class="project-type">
-                      <i class="bi bi-house"></i>
-                      1, 2 & 3 BHK Apartments
+                      <i class="bi bi-calendar-event"></i>
+                      Possession: Under Construction
                     </span>
-                  </div>
-                  <div class="project-features">
-                    <span class="feature-tag">IT Hub Location</span>
-                    <span class="feature-tag">Smart Homes</span>
-                    <span class="feature-tag">Clubhouse</span>
-                  </div>
-                  <div class="project-price">
-                    <span class="price-label">Starting from</span>
-                    <span class="price-amount">₹55 Lakhs*</span>
-                  </div>
-                  <div class="project-actions">
-                    <a href="#contact" class="btn btn-primary btn-sm"
-                      >View Details</a
-                    >
-                    <a href="#contact" class="btn btn-outline-primary btn-sm"
-                      >Schedule Visit</a
-                    >
                   </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="col-lg-3 col-md-6">
-              <div class="project-card">
-                <div class="project-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop"
-                    alt="Maple Sky Residences"
-                    class="img-fluid"
-                  />
-                  <div class="project-overlay">
-                    <div class="project-status ready">Ready to Move</div>
-                  </div>
-                </div>
-                <div class="project-content">
-                  <h4 class="project-title">Maple Sky Residences</h4>
-                  <div class="project-meta">
-                    <span class="project-location">
-                      <i class="bi bi-geo-alt"></i>
-                      Wakad, Pune
-                    </span>
-                    <span class="project-type">
-                      <i class="bi bi-house"></i>
-                      2 & 3 BHK Apartments
-                    </span>
-                  </div>
-                  <div class="project-features">
-                    <span class="feature-tag">Sky Gardens</span>
-                    <span class="feature-tag">Swimming Pool</span>
-                    <span class="feature-tag">Gym & Spa</span>
-                  </div>
-                  <div class="project-price">
-                    <span class="price-label">Starting from</span>
-                    <span class="price-amount">₹95 Lakhs*</span>
-                  </div>
-                  <div class="project-actions">
-                    <a href="#contact" class="btn btn-primary btn-sm"
-                      >View Details</a
-                    >
-                    <a href="#contact" class="btn btn-outline-primary btn-sm"
-                      >Schedule Visit</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="col-lg-3 col-md-6">
-              <div class="project-card">
-                <div class="project-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop"
-                    alt="Navin's Hanging Gardens"
-                    class="img-fluid"
-                  />
-                  <div class="project-overlay">
-                    <div class="project-status ready">Ready To Move In</div>
-                  </div>
-                </div>
-                <div class="project-content">
-                  <h4 class="project-title">Navin's Hanging Gardens</h4>
-                  <div class="project-meta">
-                    <span class="project-location">
-                      <i class="bi bi-geo-alt"></i>
-                      Kharadi, Pune
-                    </span>
-                    <span class="project-type">
-                      <i class="bi bi-house"></i>
-                      3 & 4 BHK Apartments
-                    </span>
-                  </div>
-                  <div class="project-features">
-                    <span class="feature-tag">Terrace Gardens</span>
-                    <span class="feature-tag">Premium Finishes</span>
-                    <span class="feature-tag">Security 24/7</span>
-                  </div>
-                  <div class="project-price">
-                    <span class="price-label">Starting from</span>
-                    <span class="price-amount">₹1.25 Cr*</span>
-                  </div>
-                  <div class="project-actions">
-                    <a href="#contact" class="btn btn-primary btn-sm"
-                      >View Details</a
-                    >
-                    <a href="#contact" class="btn btn-outline-primary btn-sm"
-                      >Schedule Visit</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- View All Projects Button -->
-          <div class="row mt-5">
-            <div class="col-12 text-center">
-              <a href="#recent-projects" class="btn btn-primary btn-lg"
-                >View All Projects</a
-              >
             </div>
           </div>
         </div>
       </section>
+
       <!-- /Recent Projects Section -->
 
       <!-- Schedule Section -->
@@ -777,31 +786,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- Closing -->
-                <div class="time-slot break-slot">
-                  <div class="time-label">
-                    <span class="time">9:30 PM</span>
-                    <span class="duration">30-60 min</span>
-                  </div>
-                  <div class="sessions-row">
-                    <div class="session-card break">
-                      <div class="session-type">
-                        <i class="bi bi-heart"></i>
-                        <span>Closing</span>
-                      </div>
-                      <h4>Event Closing & Thank You</h4>
-                      <p>
-                        Formal closing of the festivities with gratitude to all
-                        attendees. Event may extend till 10 PM based on audience
-                        response and enthusiasm.
-                      </p>
-                      <div class="session-meta">
-                        <span class="venue">Main Stage</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
             <!-- End Day 1 -->
@@ -810,220 +794,17 @@
       </section>
       <!-- /Schedule Section -->
 
-      <!-- Gallery Section -->
-      <section id="gallery" class="gallery section">
-        <div class="container-fluid">
-          <div class="row gy-4 justify-content-center">
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="gallery-item h-100">
-                <img
-                  src="assets/img/events/gallery-1.webp"
-                  class="img-fluid"
-                  alt=""
-                />
-                <div
-                  class="gallery-links d-flex align-items-center justify-content-center"
-                >
-                  <a
-                    href="assets/img/events/gallery-1.webp"
-                    title="Gallery 1"
-                    class="glightbox preview-link"
-                    ><i class="bi bi-arrows-angle-expand"></i
-                  ></a>
-                  <a href="#gallery" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Gallery Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="gallery-item h-100">
-                <img
-                  src="assets/img/events/gallery-2.webp"
-                  class="img-fluid"
-                  alt=""
-                />
-                <div
-                  class="gallery-links d-flex align-items-center justify-content-center"
-                >
-                  <a
-                    href="assets/img/events/gallery-2.webp"
-                    title="Gallery 2"
-                    class="glightbox preview-link"
-                    ><i class="bi bi-arrows-angle-expand"></i
-                  ></a>
-                  <a href="#gallery" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Gallery Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="gallery-item h-100">
-                <img
-                  src="assets/img/events/gallery-3.webp"
-                  class="img-fluid"
-                  alt=""
-                />
-                <div
-                  class="gallery-links d-flex align-items-center justify-content-center"
-                >
-                  <a
-                    href="assets/img/events/gallery-3.webp"
-                    title="Gallery 3"
-                    class="glightbox preview-link"
-                    ><i class="bi bi-arrows-angle-expand"></i
-                  ></a>
-                  <a href="#gallery" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Gallery Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="gallery-item h-100">
-                <img
-                  src="assets/img/events/gallery-4.webp"
-                  class="img-fluid"
-                  alt=""
-                />
-                <div
-                  class="gallery-links d-flex align-items-center justify-content-center"
-                >
-                  <a
-                    href="assets/img/events/gallery-4.webp"
-                    title="Gallery 4"
-                    class="glightbox preview-link"
-                    ><i class="bi bi-arrows-angle-expand"></i
-                  ></a>
-                  <a href="#gallery" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Gallery Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="gallery-item h-100">
-                <img
-                  src="assets/img/events/gallery-5.webp"
-                  class="img-fluid"
-                  alt=""
-                />
-                <div
-                  class="gallery-links d-flex align-items-center justify-content-center"
-                >
-                  <a
-                    href="assets/img/events/gallery-5.webp"
-                    title="Gallery 5"
-                    class="glightbox preview-link"
-                    ><i class="bi bi-arrows-angle-expand"></i
-                  ></a>
-                  <a href="#gallery" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Gallery Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="gallery-item h-100">
-                <img
-                  src="assets/img/events/gallery-6.webp"
-                  class="img-fluid"
-                  alt=""
-                />
-                <div
-                  class="gallery-links d-flex align-items-center justify-content-center"
-                >
-                  <a
-                    href="assets/img/events/gallery-6.webp"
-                    title="Gallery 6"
-                    class="glightbox preview-link"
-                    ><i class="bi bi-arrows-angle-expand"></i
-                  ></a>
-                  <a href="#gallery" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Gallery Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="gallery-item h-100">
-                <img
-                  src="assets/img/events/gallery-7.webp"
-                  class="img-fluid"
-                  alt=""
-                />
-                <div
-                  class="gallery-links d-flex align-items-center justify-content-center"
-                >
-                  <a
-                    href="assets/img/events/gallery-7.webp"
-                    title="Gallery 7"
-                    class="glightbox preview-link"
-                    ><i class="bi bi-arrows-angle-expand"></i
-                  ></a>
-                  <a href="#gallery" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Gallery Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="gallery-item h-100">
-                <img
-                  src="assets/img/events/gallery-8.webp"
-                  class="img-fluid"
-                  alt=""
-                />
-                <div
-                  class="gallery-links d-flex align-items-center justify-content-center"
-                >
-                  <a
-                    href="assets/img/events/gallery-8.webp"
-                    title="Gallery 8"
-                    class="glightbox preview-link"
-                    ><i class="bi bi-arrows-angle-expand"></i
-                  ></a>
-                  <a href="#gallery" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Gallery Item -->
-          </div>
-        </div>
-      </section>
-      <!-- /Gallery Section -->
-
       <!-- Location Section -->
       <section id="location" class="location section">
         <div class="container">
           <div class="row gy-4">
             <!-- Location Details -->
-            <div class="col-lg-4">
+            <div class="col-lg-12">
               <div class="location-content">
-                <h2>
-                  Get Direction To The
-                  <span class="location-highlight">Event Location</span>
-                </h2>
+                <h2>Get Direction To The Event Location</h2>
 
-                <div class="location-info">
-                  <div class="location-item">
+                <!-- <div class="location-info">
+                  -- <div class="location-item">
                     <div class="location-icon">
                       <i class="bi bi-geo-alt"></i>
                     </div>
@@ -1031,7 +812,7 @@
                       <h4>Galleria Mall Conference Center</h4>
                       <p>19 By Pass NR, Bali, Indonesia, BC 22196</p>
                     </div>
-                  </div>
+                  </div> --
 
                   <div class="location-item">
                     <div class="location-icon">
@@ -1039,12 +820,13 @@
                     </div>
                     <div class="location-details">
                       <h4>Reception Info</h4>
-                      <p>Phone Number: (+62) 1919-2022, (+62) 1919-2025</p>
+                      <p>Phone Number: +91 95979 10910</p>
+                      <p>Mail: helpdesk@navins.in</p>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
-                <div class="location-advantage">
+                <!-- <div class="location-advantage">
                   <h3>Location Advantage</h3>
                   <ul class="advantage-list">
                     <li>
@@ -1064,12 +846,12 @@
                       district location
                     </li>
                   </ul>
-                </div>
+                </div> -->
               </div>
             </div>
 
             <!-- Map -->
-            <div class="col-lg-8">
+            <div class="col-lg-12">
               <div class="map-container">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8317!3d-6.208763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f69c8d2a9b7d%3A0x4a9f1c7e8b2f3a4c!2sGalleria%20Mall!5e0!3m2!1sen!2sid!4v1647834425890!5m2!1sen!2sid"
@@ -1115,11 +897,19 @@
       <section id="why-choose" class="why-choose section light-background">
         <div class="container">
           <div class="row align-items-center gy-4">
+            <div class="col-lg-12">
+              <h2
+                class="mb-4"
+                style="font-size: 2.2rem; color: #b91c1c; margin-bottom: 30px"
+              >
+                WHY CHOOSE A NAVIN'S HOME
+              </h2>
+            </div>
             <!-- Image -->
-            <div class="col-lg-6">
+            <div class="col-lg-5">
               <div class="why-choose-image">
                 <img
-                  src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=400&fit=crop"
+                  src="./assets/img/why-navins.jpg"
                   alt="Navin's Buildings"
                   class="img-fluid"
                 />
@@ -1127,10 +917,8 @@
             </div>
 
             <!-- Content -->
-            <div class="col-lg-6">
+            <div class="col-lg-7">
               <div class="why-choose-content">
-                <h2>WHY CHOOSE A NAVIN'S HOME</h2>
-
                 <div class="features-grid">
                   <div class="feature-item">
                     <div class="feature-icon">
@@ -1214,12 +1002,14 @@
             <div class="col-lg-6 text-center">
               <div class="cta-content">
                 <div class="cta-buttons">
-                  <a href="#tickets" class="btn btn-primary btn-lg me-3"
-                    >Register Now</a
+                  <a
+                    href="./assets/cedar.pdf"
+                    class="btn btn-outline-secondary btn-sm"
+                    target="_blank"
+                    download
                   >
-                  <a href="#contact" class="btn btn-outline-secondary btn-lg"
-                    >Download Brochure</a
-                  >
+                    Download Brochure
+                  </a>
                 </div>
               </div>
             </div>
@@ -1229,12 +1019,12 @@
       <!-- /Call To Action Section -->
     </main>
     <!-- Scroll Top -->
-    <a
+    <!-- <a
       href="#"
       id="scroll-top"
       class="scroll-top d-flex align-items-center justify-content-center"
       ><i class="bi bi-arrow-up-short"></i
-    ></a>
+    ></a> -->
 
     <!-- Preloader -->
     <div id="preloader"></div>
@@ -1248,5 +1038,133 @@
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+      // Event Countdown Timer
+      function initEventCountdown() {
+        // Set the event date to September 26th of current year at midnight
+        const currentYear = new Date().getFullYear();
+        const eventDate = new Date(`September 26, ${currentYear} 00:00:00`);
+
+        // If the date has passed this year, set it to next year
+        const now = new Date();
+        if (now > eventDate) {
+          eventDate.setFullYear(currentYear + 1);
+        }
+
+        function updateCountdown() {
+          const now = new Date().getTime();
+          const distance = eventDate.getTime() - now;
+
+          // Time calculations
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Update the countdown display
+          const daysEl = document.getElementById("days");
+          const hoursEl = document.getElementById("hours");
+          const minutesEl = document.getElementById("minutes");
+          const secondsEl = document.getElementById("seconds");
+
+          if (daysEl) daysEl.textContent = days.toString().padStart(2, "0");
+          if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, "0");
+          if (minutesEl)
+            minutesEl.textContent = minutes.toString().padStart(2, "0");
+          if (secondsEl)
+            secondsEl.textContent = seconds.toString().padStart(2, "0");
+
+          // If the countdown is finished
+          if (distance < 0) {
+            clearInterval(countdownTimer);
+            if (daysEl) daysEl.textContent = "00";
+            if (hoursEl) hoursEl.textContent = "00";
+            if (minutesEl) minutesEl.textContent = "00";
+            if (secondsEl) secondsEl.textContent = "00";
+
+            // Optional: Show event started message
+            document.querySelector(".event-stats .container").innerHTML = `
+        <div class="text-center">
+          <h2 style="color: var(--contrast-color); font-size: 3rem; margin-bottom: 1rem;">The Event Has Started!</h2>
+          <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem;">Join us for an epic night of music!</p>
+        </div>
+      `;
+          }
+        }
+
+        // Update countdown immediately and then every second
+        updateCountdown();
+        const countdownTimer = setInterval(updateCountdown, 1000);
+      }
+
+      // Initialize countdown when page loads
+      document.addEventListener("DOMContentLoaded", initEventCountdown);
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const enquireBtn = document.getElementById("enquire-btn");
+        const modal = document.getElementById("enquiry-modal");
+        const modalClose = document.getElementById("modal-close");
+        const form = document.getElementById("event-registration");
+        const submitBtn = form.querySelector(".register-btn");
+
+        // Open modal
+        enquireBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden";
+
+          setTimeout(() => {
+            document.getElementById("fullname").focus();
+          }, 300);
+        });
+
+        // Close modal
+        function closeModal() {
+          modal.classList.remove("active");
+          document.body.style.overflow = "";
+          form.reset();
+          submitBtn.classList.remove("loading");
+          submitBtn.innerHTML = `REGISTER NOW <i class="bi bi-arrow-right-circle"></i>`;
+        }
+
+        modalClose.addEventListener("click", closeModal);
+
+        // Close on overlay click
+        modal.addEventListener("click", function (e) {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+
+        // Close on Escape key
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && modal.classList.contains("active")) {
+            closeModal();
+          }
+        });
+
+        // Form submission
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          submitBtn.classList.add("loading");
+          submitBtn.innerHTML = "REGISTERING...";
+
+          const formData = new FormData(this);
+          const data = Object.fromEntries(formData);
+
+          setTimeout(() => {
+            console.log("Registration data:", data);
+            alert("Registration successful! We will contact you soon.");
+            closeModal();
+          }, 2000);
+        });
+      });
+    </script>
   </body>
 </html>
