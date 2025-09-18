@@ -67,7 +67,9 @@
               <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted" href="#tickets">Book Tickets</a>
+            <a class="btn-getstarted" href="#tickets" id="book-tickets-btn"
+              >Book Tickets</a
+            >
           </div>
         </div>
       </header>
@@ -142,22 +144,27 @@
               <div class="content">
                 <h2>The Grand Festive Celebration</h2>
                 <p class="lead">
-                  Experience an unforgettable evening of melodious voices and
-                  spectacular performances as the Starwood family presents their
-                  grand finale. A night where music transcends boundaries and
-                  hearts connect through rhythm.
+                  ✨ The crown jewel of Navin's Starwood Towers, Medavakkam is
+                  here – Navin's CEDAR. For over 15 years, Starwood Towers has
+                  been home to 700+ happy families, a thriving community that
+                  has grown with love, trust, and togetherness. After the
+                  success of Phase 1 & 2, the final chapter unfolds with CEDAR,
+                  redefining lifestyle with our signature 3BHLK Homes – where
+                  the 'L' is yours to define.
                 </p>
-                <!-- <p>
-                  Join us for this spectacular musical journey featuring
-                  renowned artists Saindhavi, Sridhar Sena, Prasanna, and
-                  Haripriya. From soulful melodies to energetic beats, this
-                  festive night promises pure entertainment and magical moments.
-                </p> -->
+                <p class="lead">
+                  To mark this milestone, we're celebrating with a grand Festive
+                  Night featuring an electrifying concert by leading playback
+                  singers Saindhavi, Sridhar Sena, Prasanna, and Haripriya. Add
+                  to that mouth-watering food stalls, a buzzing flea market, and
+                  an evening of joy and memories – this isn't just a launch,
+                  it's an experience you'll never forget!
+                </p>
 
-                <!-- <div class="stats-grid">
+                <div class="stats-grid">
                   <div class="stat-item">
                     <div class="stat-number">1</div>
-                    <div class="stat-label">Epic Night</div>
+                    <div class="stat-label">Epic Launch / Final Tower</div>
                   </div>
                   <div class="stat-item">
                     <div class="stat-number">4</div>
@@ -165,16 +172,21 @@
                   </div>
                   <div class="stat-item">
                     <div class="stat-number">5+</div>
-                    <div class="stat-label">Hours of Music</div>
+                    <div class="stat-label">Hours of Entertainment</div>
                   </div>
                   <div class="stat-item">
                     <div class="stat-number">2000+</div>
-                    <div class="stat-label">Music Lovers</div>
+                    <div class="stat-label">
+                      Music, Food & Flea Market Lovers
+                    </div>
                   </div>
-                </div> -->
+                </div>
 
                 <div class="cta-section">
-                  <a href="#tickets" class="btn btn-primary"
+                  <a
+                    href="#tickets"
+                    class="btn btn-primary"
+                    id="book-tickets-btn-2"
                     >Book Your Tickets</a
                   >
                   <a href="#featured-artists" class="btn btn-outline"
@@ -192,34 +204,270 @@
                     alt="Cedar Festive Night"
                     class="img-fluid"
                   />
-                  <!-- <div class="gradient-overlay"></div> -->
                   <div class="floating-badge">
                     <i class="bi bi-calendar-event"></i>
                     <span>Sept 26, 2025</span>
                   </div>
                 </div>
-
-                <!-- <div class="highlight-cards">
-                  <div class="highlight-card">
-                    <i class="bi bi-music-note-beamed"></i>
-                    <h4>Live Performances</h4>
-                    <p>
-                      Experience soul-stirring live music from celebrated
-                      artists
-                    </p>
-                  </div>
-                  <div class="highlight-card">
-                    <i class="bi bi-stars"></i>
-                    <h4>Star-Studded Lineup</h4>
-                    <p>Four amazing performers in one spectacular evening</p>
-                  </div>
-                </div> -->
               </div>
             </div>
           </div>
         </div>
       </section>
       <!-- /Intro Section -->
+
+      <!-- Registration Modal HTML -->
+      <section class="section">
+        <div class="container">
+          <div class="registration-container">
+            <div class="form-header">
+              <h2 style="color: white; text-align: left;">
+                Festive Night
+              </h2>
+            </div>
+
+            <div class="form-body">
+              <form id="registrationForm">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                  <h4 class="section-title">Personal Information</h4>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="name" class="form-label">Full Name *</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        name="name"
+                        required
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email" class="form-label"
+                        >Email Address *</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        required
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="occupation" class="form-label"
+                        >Occupation</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="occupation"
+                        name="occupation"
+                        placeholder="What do you do?"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="phone" class="form-label"
+                        >Contact Number *</label
+                      >
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="phone"
+                        name="phone"
+                        required
+                        placeholder="+91 1234567890"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Ticket Options Section -->
+                <div class="form-section">
+                  <h4 class="section-title">Choose Your Experience</h4>
+                  <p class="form-text mb-4">
+                    Select the ticket type that best suits your celebration
+                    style
+                  </p>
+
+                  <div class="price-option">
+                    <label class="d-flex align-items-start">
+                      <input
+                        type="radio"
+                        name="ticketType"
+                        value="standard"
+                        checked
+                      />
+                      <div class="option-content">
+                        <div class="option-details">
+                          <h4>Standard Admission</h4>
+                          <p>
+                            Perfect for music lovers who want to enjoy the full
+                            experience
+                          </p>
+                          <div class="option-features">
+                            <span class="feature-badge">Concert Access</span>
+                            <span class="feature-badge">Food Stalls</span>
+                            <span class="feature-badge">Flea Market</span>
+                            <span class="feature-badge">General Seating</span>
+                          </div>
+                        </div>
+                        <div class="price-display">
+                          <div class="price-amount">₹999</div>
+                          <div class="price-period">per person</div>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="price-option">
+                    <label class="d-flex align-items-start">
+                      <input type="radio" name="ticketType" value="vip" />
+                      <div class="option-content">
+                        <div class="option-details">
+                          <h4>VIP Experience</h4>
+                          <p>
+                            Enhanced experience with premium perks and exclusive
+                            access
+                          </p>
+                          <div class="option-features">
+                            <span class="feature-badge">Premium Seating</span>
+                            <span class="feature-badge">Complimentary F&B</span>
+                            <span class="feature-badge"
+                              >Exclusive Merchandise</span
+                            >
+                            <span class="feature-badge"
+                              >Artist Meet & Greet</span
+                            >
+                          </div>
+                        </div>
+                        <div class="price-display">
+                          <div class="price-amount">₹1,999</div>
+                          <div class="price-period">per person</div>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="price-option">
+                    <label class="d-flex align-items-start">
+                      <input type="radio" name="ticketType" value="family" />
+                      <div class="option-content">
+                        <div class="option-details">
+                          <h4>Family Pack (4 persons)</h4>
+                          <p>
+                            Special family offer - bring your loved ones and
+                            save more!
+                          </p>
+                          <div class="option-features">
+                            <span class="feature-badge"
+                              >4 Standard Tickets</span
+                            >
+                            <span class="feature-badge">Family Seating</span>
+                            <span class="feature-badge">Kids Activities</span>
+                            <span class="feature-badge">₹500 Savings</span>
+                          </div>
+                        </div>
+                        <div class="price-display">
+                          <div class="price-amount">₹3,499</div>
+                          <div class="price-period">for 4 people</div>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Address Section -->
+                <div class="form-section">
+                  <h4 class="section-title">Contact Information</h4>
+
+                  <div class="mb-3">
+                    <label for="address" class="form-label"
+                      >Your Residential Address / Location *</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="address"
+                      name="address"
+                      rows="3"
+                      required
+                      placeholder="Enter your complete address"
+                      minlength="7"
+                    ></textarea>
+                    <div class="character-count" id="addressCount">
+                      0/7 characters (minimum 7 required)
+                    </div>
+                    <div class="form-text">
+                      Please provide your complete address for verification and
+                      event updates
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="form-section">
+                  <h4 class="section-title">Additional Information</h4>
+
+                  <div class="mb-3">
+                    <label class="form-label"
+                      >Are you interested in Home Buying at Navin's
+                      CEDAR?</label
+                    >
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="homeBuyingInterest"
+                        id="interestedYes"
+                        value="yes"
+                      />
+                      <label class="form-check-label" for="interestedYes">
+                        Yes, I'm interested in learning more about Navin's CEDAR
+                      </label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="homeBuyingInterest"
+                        id="interestedNo"
+                        value="no"
+                        checked
+                      />
+                      <label class="form-check-label" for="interestedNo">
+                        No, I'm here just for the event
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="homeBuyingInterest"
+                        id="interestedMaybe"
+                        value="maybe"
+                      />
+                      <label class="form-check-label" for="interestedMaybe">
+                        Maybe, I'd like more information during the event
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">
+                  Complete Registration & Pay
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section id="sticky-button-container">
         <div class="sticky-buttons">
@@ -320,8 +568,13 @@
         <!-- End Section Title -->
 
         <div class="container">
+          <div class="section-title">
+            <h2>Featured Artists</h2>
+            <p>Talented performers coming to Navin's CEDAR Festive Night</p>
+          </div>
+
           <div class="row gy-4">
-            <!-- Artist 1 -->
+            <!-- Artist 1: Saindhavi -->
             <div class="col-lg-3 col-md-6">
               <div class="artist-card">
                 <div class="artist-image">
@@ -335,14 +588,17 @@
                   <span class="artist-category">Singer</span>
                   <h4 class="artist-name">Saindhavi</h4>
                   <p class="artist-description">
-                    Renowned playback singer known for her melodious voice and
-                    versatile performances across multiple languages.
+                    Saindhavi is one of the most refined voices in South Indian
+                    cinema, celebrated for her unique tone and unforgettable
+                    melodies. From soulful hits like Pirai Thedum, Yaaro Ivan,
+                    Kayile Aagasam, and Vizhigalil Oru Vaanavil to heartwarming
+                    lullabies, she brings magic every time she takes the stage.
                   </p>
                 </div>
               </div>
             </div>
 
-            <!-- Artist 2 -->
+            <!-- Artist 2: Sridhar Sena -->
             <div class="col-lg-3 col-md-6">
               <div class="artist-card">
                 <div class="artist-image">
@@ -357,14 +613,18 @@
                   <span class="artist-category">Singer</span>
                   <h4 class="artist-name">Sridhar Sena</h4>
                   <p class="artist-description">
-                    Popular vocalist and performer bringing energy and passion
-                    to every musical performance.
+                    Sridhar Sena is one of the rising stars of South Indian
+                    music, known for his soulful voice and powerful stage
+                    presence. From delivering memorable songs in Tamil cinema to
+                    winning hearts in Super Singer, his performance of the
+                    Murugan song earned him special recognition and admiration
+                    across audiences.
                   </p>
                 </div>
               </div>
             </div>
 
-            <!-- Artist 3 -->
+            <!-- Artist 3: Prasanna -->
             <div class="col-lg-3 col-md-6">
               <div class="artist-card">
                 <div class="artist-image">
@@ -379,19 +639,22 @@
                   <span class="artist-category">Singer</span>
                   <h4 class="artist-name">Prasanna</h4>
                   <p class="artist-description">
-                    Talented artist known for captivating audiences with soulful
-                    renditions and stage presence.
+                    Prasanna Adhisesha is an emerging voice in South Indian
+                    music, known for his journey in Super Singer and his
+                    soulful, energetic performances. With a style that connects
+                    instantly with the audience, he represents the fresh wave of
+                    talent in today's music scene.
                   </p>
                 </div>
               </div>
             </div>
 
-            <!-- Artist 4 -->
+            <!-- Artist 4: Haripriya -->
             <div class="col-lg-3 col-md-6">
               <div class="artist-card">
                 <div class="artist-image">
                   <img
-                    src="./assets/4.jpg"
+                    src="./assets/img/haripriya.jpg"
                     alt="Haripriya"
                     class="img-fluid"
                     style="object-position: 50% 20%"
@@ -401,8 +664,11 @@
                   <span class="artist-category">Singer</span>
                   <h4 class="artist-name">Haripriya</h4>
                   <p class="artist-description">
-                    Dynamic performer who brings charm and musical excellence to
-                    every show.
+                    Super Singer Haripriya is one of the standout voices from
+                    the show, known for her versatile singing and vibrant stage
+                    presence. With recent hits like Viral Vayyari and the
+                    energetic Bullet Song, her dazzling vocals have made her a
+                    rising sensation in South Indian music.
                   </p>
                 </div>
               </div>
@@ -425,12 +691,32 @@
               <div class="about-card reveal">
                 <h3 class="text-center mb-3">Building Dreams Since 1989</h3>
                 <p class="lead text-center mb-4">
-                  Navin's, since 1989, crafts homes with intellect and passion,
-                  striving for architectural brilliance and value-for-price. Our
-                  customer-centric ethos, built on trust, quality, and
-                  transparency, is reinforced through
-                  <strong class="text-warning">1275+ quality checks</strong>,
-                  guaranteeing impeccable projects with ethical practices.
+                  For over three decades, Navin's has redefined what it means to
+                  create exceptional living spaces. Since 1989, we have been
+                  crafting environments where childhoods blossom, ambitions are
+                  nurtured, and families weave memories that endure for
+                  generations.
+                </p>
+                <p class="lead text-center mb-4">
+                  Our reputation stands on an unshakable foundation of ethical
+                  values, transparency, integrity, and masterful craftsmanship.
+                  This steadfast commitment has earned the trust of countless
+                  homebuyers. At Navin's, excellence lies in the details
+                  reflected in the
+                  <strong class="text-warning"
+                    >1,575+ rigorous quality checks</strong
+                  >
+                  we uphold in every creation, ensuring each home is a benchmark
+                  of perfection.
+                </p>
+                <p class="lead text-center mb-4">
+                  A Navin's residence has far more than four walls, it is a
+                  statement of security, sophistication, and timeless worth.
+                  Backed by clear titles, robust engineering, distinctive
+                  design, and meticulous attention to detail, every home we
+                  deliver is not merely built, but thoughtfully perfected. More
+                  than a place to live, it is a masterpiece that elevates the
+                  way you experience life.
                 </p>
 
                 <div class="text-center mb-4">
@@ -453,19 +739,10 @@
                 >
                   <div class="col-md-4 col-12 mb-4">
                     <div class="stats-card">
-                      <i class="bi bi-building fs-2"></i>
+                      <i class="bi bi-calendar-check fs-2"></i>
                       <div>
-                        <h5 class="mt-2 mb-1">125+</h5>
-                        <p class="small mb-0">Projects</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-12 mb-4">
-                    <div class="stats-card">
-                      <i class="bi bi-shield-check fs-2"></i>
-                      <div>
-                        <h5 class="mt-2 mb-1">1275+</h5>
-                        <p class="small mb-0">Quality Checks</p>
+                        <h5 class="mt-2 mb-1">36</h5>
+                        <p class="small mb-0">YEARS OF COMMITMENT</p>
                       </div>
                     </div>
                   </div>
@@ -473,8 +750,8 @@
                     <div class="stats-card">
                       <i class="bi bi-emoji-smile fs-2"></i>
                       <div>
-                        <h5 class="mt-2 mb-1">3400+</h5>
-                        <p class="small mb-0">Happy Customers</p>
+                        <h5 class="mt-2 mb-1">3800+</h5>
+                        <p class="small mb-0">HAPPY FAMILIES</p>
                       </div>
                     </div>
                   </div>
@@ -483,16 +760,34 @@
                       <i class="bi bi-award fs-2"></i>
                       <div>
                         <h5 class="mt-2 mb-1">60+</h5>
-                        <p class="small mb-0">Awards</p>
+                        <p class="small mb-0">AWARDS</p>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4 col-12 mb-4">
                     <div class="stats-card">
-                      <i class="bi bi-calendar-check fs-2"></i>
+                      <i class="bi bi-shield-check fs-2"></i>
                       <div>
-                        <h5 class="mt-2 mb-1">35</h5>
-                        <p class="small mb-0">Years in Business</p>
+                        <h5 class="mt-2 mb-1">1575+</h5>
+                        <p class="small mb-0">QUALITY CHECKS</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12 mb-4">
+                    <div class="stats-card">
+                      <i class="bi bi-building fs-2"></i>
+                      <div>
+                        <h5 class="mt-2 mb-1">128+</h5>
+                        <p class="small mb-0">PROJECTS</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12 mb-4">
+                    <div class="stats-card">
+                      <i class="bi bi-tree fs-2"></i>
+                      <div>
+                        <h5 class="mt-2 mb-1">IGBC</h5>
+                        <p class="small mb-0">NATIONAL GREEN CHAMPION</p>
                       </div>
                     </div>
                   </div>
@@ -504,149 +799,157 @@
       </section>
 
       <!-- Recent Projects Section -->
-<section id="recent-projects" class="recent-projects section light-background">
+      <section
+        id="recent-projects"
+        class="recent-projects section light-background"
+      >
         <div class="container">
-            <!-- Section Title -->
-            <div class="section-title">
-                <h2>Upcoming Projects</h2>
-                <p>Live Life Singapore Style with thoughtfully designed 3 BHK homes at Navin's Cedar Tower</p>
-            </div>
-            <!-- End Section Title -->
+          <!-- Section Title -->
+          <div class="section-title">
+            <h2>Upcoming Projects</h2>
+            <p>
+              Live Life Singapore Style with thoughtfully designed 3 BHK homes
+              at Navin's Cedar Tower
+            </p>
+          </div>
+          <!-- End Section Title -->
 
-            <div class="row justify-content-center">
-                <!-- Project: Navin's Cedar -->
-                <div class="col-lg-8 col-md-10">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="./assets/img/cedars.jpg" alt="Navin's Cedar Tower" class="img-fluid" />
-                            <div class="project-overlay">
-                                <div class="project-status under-construction">Under Construction</div>
-                            </div>
-                        </div>
-                        
-                        <div class="project-content">
-                            <h4 class="project-title">Navin's Cedar Tower</h4>
-                            
-                            <div class="project-meta">
-                                <span class="project-location">
-                                    <i class="bi bi-geo-alt"></i>
-                                    Medavakkam, Chennai
-                                </span>
-                                <span class="project-type">
-                                    <i class="bi bi-house"></i>
-                                    3 BHK Apartments
-                                </span>
-                                <span class="project-floors">
-                                    <i class="bi bi-building"></i>
-                                    Basement + Stilt + 21 Floors
-                                </span>
-                            </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-10">
+              <!-- Main Project Image -->
+              <div class="project-main-image">
+                <img src="./assets/img/cedars.jpg" alt="Navin's Cedar Tower" />
+                <div class="project-status">Under Construction</div>
+              </div>
 
-                            <div class="project-features">
-                                <span class="feature-tag">Singapore-Style Elevation</span>
-                                <span class="feature-tag">100+ Amenities</span>
-                                <span class="feature-tag">Multi-Purpose Rooms</span>
-                                <span class="feature-tag">Smart Homes</span>
-                                <span class="feature-tag">High Rental Yield</span>
-                                <span class="feature-tag">18,500 Sq.ft Clubhouse</span>
-                            </div>
+              <!-- Project Content Layout -->
+              <div class="row">
+                <!-- Sidebar with Project Details -->
+                <div class="col-lg-4">
+                  <div class="project-sidebar">
+                    <div class="project-icon">
+                      <i class="bi bi-building"></i>
+                    </div>
+                    <h3>Navin's Cedar Tower</h3>
+                    <div class="sidebar-divider"></div>
 
-                            <div class="project-price">
-                                <span class="price-label">3 BHK Price</span>
-                                <span class="price-amount">₹ 1.45 Cr* Onwards</span>
-                            </div>
-
-                            <div class="project-price">
-                                <span class="price-label">Area</span>
-                                <span class="price-amount">1908 – 2140 Sq.ft.</span>
-                            </div>
-
-                            <!-- Special Offer Section -->
-                            <div class="offer-section">
-                                <div class="offer-title">Get home theater setup worth Rs. 5 lakh – FREE</div>
-                                <div class="offer-items">
-                                    <div class="offer-item">• One 65"TV</div>
-                                    <div class="offer-item">• 5.1 home Theater</div>
-                                    <div class="offer-item">• 2 Recliner Couch</div>
-                                </div>
-                            </div>
-
-                            <div class="project-actions">
-                                <a href="https://navins.in/landingpage/navin%27s-cedar-starwood-towers/" class="btn btn-primary btn-sm">
-                                    <i class="bi bi-info-circle me-2"></i>Know More
-                                </a>
-                                <a href="./assets/cedar.pdf" class="btn btn-outline-primary btn-sm" target="_blank" download>
-                                    <i class="bi bi-download me-2"></i>Download Brochure
-                                </a>
-                            </div>
-
-                            <div class="project-meta">
-                                <span class="project-location">
-                                    <i class="bi bi-file-text"></i>
-                                    RERA Registered
-                                </span>
-                                <span class="project-type">
-                                    <i class="bi bi-calendar-event"></i>
-                                    Expected handover Mid 2026
-                                </span>
-                            </div>
-                        </div>
+                    <!-- Key Metrics -->
+                    <div class="project-meta-sidebar">
+                      <div class="meta-item">
+                        <span class="meta-label">Location</span>
+                        <span class="meta-value">Medavakkam, Chennai</span>
+                      </div>
+                      <div class="meta-item">
+                        <span class="meta-label">Configuration</span>
+                        <span class="meta-value">3 BHK Apartments</span>
+                      </div>
+                      <div class="meta-item">
+                        <span class="meta-label">Area</span>
+                        <span class="meta-value">1908 – 2140 Sq.ft</span>
+                      </div>
+                      <div class="meta-item">
+                        <span class="meta-label">Price</span>
+                        <span class="meta-value price-highlight"
+                          >₹ 1.45 Cr* Onwards</span
+                        >
+                      </div>
+                      <div class="meta-item">
+                        <span class="meta-label">Floors</span>
+                        <span class="meta-value">Basement + Stilt + 21</span>
+                      </div>
+                      <div class="meta-item">
+                        <span class="meta-label">Possession</span>
+                        <span class="meta-value">Mid 2026</span>
+                      </div>
                     </div>
 
-                    <!-- Project Highlights -->
-                    <div class="project-highlights">
-                        <h3><i class="bi bi-star-fill me-2"></i>Project Highlights</h3>
-                        <div class="highlights-grid">
-                            <div class="highlight-item">
-                                <span class="highlight-number">700+</span>
-                                <span class="highlight-text">Families</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-number">166</span>
-                                <span class="highlight-text">Premium 3 BHK Homes</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-number">18,500</span>
-                                <span class="highlight-text">Sq.ft Clubhouse</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-number">9.85</span>
-                                <span class="highlight-text">Acres of Lush Landscape</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-number">100+</span>
-                                <span class="highlight-text">Lifestyle Amenities</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-number">21</span>
-                                <span class="highlight-text">Floor Highrise</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Detailed Description -->
-                    <div class="description-section">
-                        <h3><i class="bi bi-house-heart me-2"></i>About Navin's Cedar Tower</h3>
-                        <p>
-                            Navin's CEDAR, the grand finale of Starwood Towers in Medavakkam. It stands tall with Basement + Stilt + 21 floors, presenting 166 premium 3 BHK homes. Designed with a balcony for breathtaking views and a versatile multi-purpose room, every home is crafted for a lifestyle beyond the ordinary.
-                        </p>
-                        <p>
-                            Spread across 9.85 acres of lush, landscaped spaces, CEDAR is surrounded by 100+ ready-to-use lifestyle amenities and a thriving community of 700+ happy families. This isn't just another phase, it's the crown jewel of Starwood Towers, where legacy meets modern living.
-                        </p>
+                    <!-- Special Offer Box -->
+                    <div class="offer-box">
+                      <div class="offer-title">
+                        FREE Home Theater Worth ₹5 Lakhs
+                      </div>
+                      <div class="offer-items">
                         <ul>
-                            <li>Singapore-style architectural elevation with modern design aesthetics</li>
-                            <li>Premium location in Medavakkam with seamless city connectivity</li>
-                            <li>Smart home features integrated throughout the apartments</li>
-                            <li>High rental yield potential for investment opportunities</li>
-                            <li>Comprehensive lifestyle amenities including an 18,500 sq.ft clubhouse</li>
-                            <li>RERA registered project ensuring transparency and compliance</li>
-                            <li>Expected possession by mid-2026 with quality construction timeline</li>
+                          <li>One 65" TV</li>
+                          <li>5.1 Home Theater</li>
+                          <li>2 Recliner Couch</li>
                         </ul>
+                      </div>
                     </div>
+                  </div>
                 </div>
+
+                <!-- Main Content Area -->
+                <div class="col-lg-8">
+                  <div class="project-content">
+                    <p>
+                      Navin's CEDAR, the grand finale of Starwood Towers in
+                      Medavakkam. It stands tall with Basement + Stilt + 21
+                      floors, presenting 166 premium 3 BHK homes. Designed with
+                      a balcony for breathtaking views and a versatile
+                      multi-purpose room, every home is crafted for a lifestyle
+                      beyond the ordinary.
+                    </p>
+                    <p>
+                      Spread across 9.85 acres of lush, landscaped spaces, CEDAR
+                      is surrounded by 100+ ready-to-use lifestyle amenities and
+                      a thriving community of 700+ happy families. This isn't
+                      just another phase, it's the crown jewel of Starwood
+                      Towers, where legacy meets modern living.
+                    </p>
+
+                    <!-- Feature Tags -->
+                    <div class="project-features">
+                      <span class="feature-tag">Singapore-Style Elevation</span>
+                      <span class="feature-tag">100+ Amenities</span>
+                      <span class="feature-tag">Smart Homes</span>
+                      <span class="feature-tag">High Rental Yield</span>
+                      <span class="feature-tag">18,500 Sq.ft Clubhouse</span>
+                      <span class="feature-tag">RERA Registered</span>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="project-actions">
+                      <a
+                        href="https://navins.in/landingpage/navin%27s-cedar-starwood-towers/"
+                        class="btn btn-primary"
+                        style="
+                          display: flex;
+                          align-items: center;
+                          text-align: center;
+                          justify-content: center;
+                        "
+                      >
+                        <i class="bi bi-info-circle"></i>Know More
+                      </a>
+                      <a
+                        href="./assets/cedar.pdf"
+                        class="btn btn-outline-primary"
+                        target="_blank"
+                        download
+                        style="
+                          display: flex;
+                          align-items: center;
+                          text-align: center;
+                          justify-content: center;
+                        "
+                      >
+                        <i class="bi bi-download"></i>Download Brochure
+                      </a>
+                    </div>
+
+                    <!-- Learn More Link -->
+                    <a href="#" class="learn-more-link">
+                      View Complete Details
+                      <i class="bi bi-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
       <!-- /Recent Projects Section -->
 
       <!-- Schedule Section -->

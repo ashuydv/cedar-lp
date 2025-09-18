@@ -346,4 +346,176 @@
       }, 2000);
     });
   });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Address character count validation
+    const addressTextarea = document.getElementById("address");
+    const addressCount = document.getElementById("addressCount");
+
+    addressTextarea.addEventListener("input", function () {
+      const length = this.value.length;
+      addressCount.textContent = `${length}/7 characters (minimum 7 required)`;
+
+      if (length < 7) {
+        addressCount.classList.add("invalid");
+        this.setCustomValidity(
+          "Please enter at least 7 characters for your address"
+        );
+      } else {
+        addressCount.classList.remove("invalid");
+        this.setCustomValidity("");
+      }
+    });
+
+    // Price option selection styling
+    const priceOptions = document.querySelectorAll(".price-option");
+    priceOptions.forEach((option) => {
+      option.addEventListener("click", function () {
+        const radioInput = this.querySelector('input[type="radio"]');
+        radioInput.checked = true;
+
+        // Update visual selection
+        priceOptions.forEach((opt) => opt.classList.remove("selected"));
+        this.classList.add("selected");
+      });
+    });
+
+    // Form submission
+    const registrationForm = document.getElementById("registrationForm");
+    registrationForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Basic validation
+      if (addressTextarea.value.length < 7) {
+        alert("Please enter a valid address with at least 7 characters");
+        addressTextarea.focus();
+        return;
+      }
+
+      // If validation passes
+      alert(
+        "Registration successful! We look forward to seeing you at the event."
+      );
+      registrationForm.reset();
+
+      // Reset visual selections
+      priceOptions.forEach((opt) => opt.classList.remove("selected"));
+      document
+        .getElementById("standardTicket")
+        .closest(".price-option")
+        .classList.add("selected");
+    });
+
+    // Initialize first option as selected
+    document.querySelector(".price-option").classList.add("selected");
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const bookTicketsBtn = document.getElementById("book-tickets-btn");
+    const bookTicketsBtn2 = document.getElementById("book-tickets-btn-2");
+    const registrationModal = document.getElementById("registration-modal");
+    const registrationModalClose = document.getElementById(
+      "registration-modal-close"
+    );
+    const registrationForm = document.getElementById("registrationForm");
+    const addressTextarea = document.getElementById("address");
+    const addressCount = document.getElementById("addressCount");
+
+    // Open registration modal
+    function openRegistrationModal(e) {
+      e.preventDefault();
+      registrationModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        document.getElementById("name").focus();
+      }, 300);
+    }
+
+    // Close registration modal
+    function closeRegistrationModal() {
+      registrationModal.classList.remove("active");
+      document.body.style.overflow = "";
+      registrationForm.reset();
+      updateAddressCount();
+    }
+
+    // Update address character count
+    function updateAddressCount() {
+      const count = addressTextarea.value.length;
+      const minCount = 7;
+      addressCount.textContent = `${count}/${minCount} characters (minimum ${minCount} required)`;
+
+      if (count >= minCount) {
+        addressCount.style.color = "#28a745";
+      } else {
+        addressCount.style.color = "#6c757d";
+      }
+    }
+
+    // Event listeners
+    if (bookTicketsBtn) {
+      bookTicketsBtn.addEventListener("click", openRegistrationModal);
+    }
+    if (bookTicketsBtn2) {
+      bookTicketsBtn2.addEventListener("click", openRegistrationModal);
+    }
+
+    registrationModalClose.addEventListener("click", closeRegistrationModal);
+
+    // Address textarea character counting
+    addressTextarea.addEventListener("input", updateAddressCount);
+
+    // Initialize address count
+    updateAddressCount();
+
+    // Close modal on overlay click
+    registrationModal.addEventListener("click", function (e) {
+      if (e.target === registrationModal) {
+        closeRegistrationModal();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "Escape" &&
+        registrationModal.classList.contains("active")
+      ) {
+        closeRegistrationModal();
+      }
+    });
+
+    // Registration form submission
+    registrationForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+
+      // Validate minimum address length
+      if (addressTextarea.value.length < 7) {
+        alert("Please enter a complete address (minimum 7 characters).");
+        addressTextarea.focus();
+        return;
+      }
+
+      submitBtn.innerHTML =
+        '<i class="bi bi-hourglass-split me-2"></i>Processing...';
+      submitBtn.disabled = true;
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+
+      // Simulate form submission - replace with your actual submission logic
+      setTimeout(() => {
+        console.log("Registration data:", data);
+        alert(
+          "Registration successful! We will contact you soon with ticket details."
+        );
+        closeRegistrationModal();
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 2000);
+    });
+  });
 })();
