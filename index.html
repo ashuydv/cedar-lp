@@ -68,7 +68,10 @@
               <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted" href="#tickets" id="book-tickets-btn"
+            <a
+              class="btn-getstarted"
+              id="sticky-enquire-btn"
+              style="cursor: pointer"
               >Book Tickets</a
             >
           </div>
@@ -218,67 +221,78 @@
       <!-- /Intro Section -->
 
       <!-- Registration Modal HTML -->
-      <section class="section">
-        <div class="container">
-          <div class="registration-container">
+      <!-- Enquiry Popup Modal -->
+      <div id="enquiry-modal" class="modal-overlay">
+        <div class="modal-container">
+          <div class="modal-close-btn" id="modal-close">&times;</div>
+
+          <div
+            class="registration-container"
+            style="max-width: 600px; margin: 0"
+          >
             <div class="form-header">
-              <h2 style="color: white; text-align: left">
-                Cedar's Festive Night
+              <h2 style="color: white; text-align: center; font-size: 1.5rem">
+                Cedar's Festive Night Registration
               </h2>
             </div>
 
-            <div class="form-body">
-              <form id="registrationForm">
+            <div
+              class="form-body"
+              style="max-height: 70vh; overflow-y: auto; padding: 25px 20px"
+            >
+              <form id="event-registration">
                 <!-- Personal Information Section -->
                 <div class="form-section">
                   <div class="row mb-3">
                     <div class="col-md-6">
-                      <label for="name" class="form-label">Full Name *</label>
+                      <label for="popup-name" class="form-label"
+                        >Full Name *</label
+                      >
                       <input
                         type="text"
                         class="form-control"
-                        id="name"
+                        id="popup-name"
                         name="name"
                         required
                         placeholder="Enter your full name"
                       />
                     </div>
                     <div class="col-md-6">
-                      <label for="email" class="form-label"
+                      <label for="popup-email" class="form-label"
                         >Email Address *</label
                       >
                       <input
                         type="email"
                         class="form-control"
-                        id="email"
+                        id="popup-email"
                         name="email"
                         required
-                        placeholder="your.email@example.com"
+                        placeholder="email@abcd.com"
                       />
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <div class="col-md-6">
-                      <label for="occupation" class="form-label"
+                      <label for="popup-occupation" class="form-label"
                         >Occupation</label
                       >
                       <input
                         type="text"
                         class="form-control"
-                        id="occupation"
+                        id="popup-occupation"
                         name="occupation"
                         placeholder="What do you do?"
                       />
                     </div>
                     <div class="col-md-6">
-                      <label for="phone" class="form-label"
+                      <label for="popup-phone" class="form-label"
                         >Contact Number *</label
                       >
                       <input
                         type="tel"
                         class="form-control"
-                        id="phone"
+                        id="popup-phone"
                         name="phone"
                         required
                         placeholder="+91 1234567890"
@@ -287,19 +301,19 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="address" class="form-label"
+                    <label for="popup-address" class="form-label"
                       >Your Residential Address / Location *</label
                     >
                     <textarea
                       class="form-control"
-                      id="address"
+                      id="popup-address"
                       name="address"
-                      rows="3"
+                      rows="2"
                       required
                       placeholder="Enter your complete address"
                       minlength="7"
                     ></textarea>
-                    <div class="character-count" id="addressCount">
+                    <div class="character-count" id="popup-addressCount">
                       0/7 characters (minimum 7 required)
                     </div>
                   </div>
@@ -315,11 +329,11 @@
                         class="form-check-input"
                         type="radio"
                         name="homeBuyingInterest"
-                        id="interestedYes"
+                        id="popup-interestedYes"
                         value="yes"
                         checked
                       />
-                      <label class="form-check-label" for="interestedYes">
+                      <label class="form-check-label" for="popup-interestedYes">
                         Yes, I'm interested in learning more about Navin's CEDAR
                       </label>
                     </div>
@@ -328,10 +342,10 @@
                         class="form-check-input"
                         type="radio"
                         name="homeBuyingInterest"
-                        id="interestedNo"
+                        id="popup-interestedNo"
                         value="no"
                       />
-                      <label class="form-check-label" for="interestedNo">
+                      <label class="form-check-label" for="popup-interestedNo">
                         No, I'm here just for the event
                       </label>
                     </div>
@@ -340,10 +354,13 @@
                         class="form-check-input"
                         type="radio"
                         name="homeBuyingInterest"
-                        id="interestedMaybe"
+                        id="popup-interestedMaybe"
                         value="maybe"
                       />
-                      <label class="form-check-label" for="interestedMaybe">
+                      <label
+                        class="form-check-label"
+                        for="popup-interestedMaybe"
+                      >
                         Maybe, I'd like more information during the event
                       </label>
                     </div>
@@ -359,11 +376,14 @@
                         class="form-check-input"
                         type="radio"
                         name="planningToBuy"
-                        id="activelyLooking"
+                        id="popup-activelyLooking"
                         value="actively_looking"
                         checked
                       />
-                      <label class="form-check-label" for="activelyLooking">
+                      <label
+                        class="form-check-label"
+                        for="popup-activelyLooking"
+                      >
                         Yes, actively looking
                       </label>
                     </div>
@@ -372,10 +392,13 @@
                         class="form-check-input"
                         type="radio"
                         name="planningToBuy"
-                        id="exploringOptions"
+                        id="popup-exploringOptions"
                         value="exploring_options"
                       />
-                      <label class="form-check-label" for="exploringOptions">
+                      <label
+                        class="form-check-label"
+                        for="popup-exploringOptions"
+                      >
                         Exploring options
                       </label>
                     </div>
@@ -384,10 +407,10 @@
                         class="form-check-input"
                         type="radio"
                         name="planningToBuy"
-                        id="notRightNow"
+                        id="popup-notRightNow"
                         value="not_right_now"
                       />
-                      <label class="form-check-label" for="notRightNow">
+                      <label class="form-check-label" for="popup-notRightNow">
                         Not right now
                       </label>
                     </div>
@@ -401,11 +424,11 @@
                         class="form-check-input"
                         type="radio"
                         name="homeSize"
-                        id="twoBhk"
+                        id="popup-twoBhk"
                         value="2_bhk"
                         checked
                       />
-                      <label class="form-check-label" for="twoBhk">
+                      <label class="form-check-label" for="popup-twoBhk">
                         2 BHK
                       </label>
                     </div>
@@ -414,10 +437,10 @@
                         class="form-check-input"
                         type="radio"
                         name="homeSize"
-                        id="threeBhk"
+                        id="popup-threeBhk"
                         value="3_bhk"
                       />
-                      <label class="form-check-label" for="threeBhk">
+                      <label class="form-check-label" for="popup-threeBhk">
                         3 BHK
                       </label>
                     </div>
@@ -426,10 +449,10 @@
                         class="form-check-input"
                         type="radio"
                         name="homeSize"
-                        id="fourBhk"
+                        id="popup-fourBhk"
                         value="3.5_4_bhk"
                       />
-                      <label class="form-check-label" for="fourBhk">
+                      <label class="form-check-label" for="popup-fourBhk">
                         3.5 / 4 BHK
                       </label>
                     </div>
@@ -438,10 +461,10 @@
                         class="form-check-input"
                         type="radio"
                         name="homeSize"
-                        id="justConcert"
+                        id="popup-justConcert"
                         value="just_concert"
                       />
-                      <label class="form-check-label" for="justConcert">
+                      <label class="form-check-label" for="popup-justConcert">
                         Just attending the concert
                       </label>
                     </div>
@@ -455,11 +478,11 @@
                         class="form-check-input"
                         type="radio"
                         name="budgetRange"
-                        id="budget1"
+                        id="popup-budget1"
                         value="below_1cr"
                         checked
                       />
-                      <label class="form-check-label" for="budget1">
+                      <label class="form-check-label" for="popup-budget1">
                         < 1 Cr
                       </label>
                     </div>
@@ -468,10 +491,10 @@
                         class="form-check-input"
                         type="radio"
                         name="budgetRange"
-                        id="budget2"
+                        id="popup-budget2"
                         value="1_to_1.5cr"
                       />
-                      <label class="form-check-label" for="budget2">
+                      <label class="form-check-label" for="popup-budget2">
                         1 Cr – 1.5 Cr
                       </label>
                     </div>
@@ -480,10 +503,10 @@
                         class="form-check-input"
                         type="radio"
                         name="budgetRange"
-                        id="budget3"
+                        id="popup-budget3"
                         value="1.5_to_2cr"
                       />
-                      <label class="form-check-label" for="budget3">
+                      <label class="form-check-label" for="popup-budget3">
                         1.5 Cr – 2 Cr
                       </label>
                     </div>
@@ -492,10 +515,10 @@
                         class="form-check-input"
                         type="radio"
                         name="budgetRange"
-                        id="budget4"
+                        id="popup-budget4"
                         value="above_2cr"
                       />
-                      <label class="form-check-label" for="budget4">
+                      <label class="form-check-label" for="popup-budget4">
                         2 Cr+
                       </label>
                     </div>
@@ -503,30 +526,369 @@
 
                   <!-- Preferred Location -->
                   <div class="mb-3">
-                    <label for="preferredLocation" class="form-label"
+                    <label for="popup-preferredLocation" class="form-label"
                       >Preferred Location</label
                     >
                     <input
                       type="text"
                       class="form-control"
-                      id="preferredLocation"
+                      id="popup-preferredLocation"
                       name="preferredLocation"
                       placeholder="Enter your preferred location in Chennai"
                     />
                   </div>
+
+                  <!-- Hidden Tracking Fields -->
+                  <input type="hidden" name="timestamp" id="popup-timestamp" />
+                  <input type="hidden" name="source" id="popup-source" />
+                  <input type="hidden" name="campaign" id="popup-campaign" />
+                  <input type="hidden" name="channel" id="popup-channel" />
+                  <input type="hidden" name="keyword" id="popup-keyword" />
+                  <input type="hidden" name="placement" id="popup-placement" />
+                  <input type="hidden" name="device" id="popup-device" />
+                  <input type="hidden" name="medium" id="popup-medium" />
+                  <input type="hidden" name="gclid" id="popup-gclid" />
+                  <input
+                    type="hidden"
+                    name="configuration"
+                    id="popup-configuration"
+                  />
+                  <input
+                    type="hidden"
+                    name="ip_address"
+                    id="popup-ip_address"
+                  />
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="padding: 15px; font-size: 16px; font-weight: 600"
+                >
+                  REGISTER NOW
+                  <i class="bi bi-arrow-right-circle ms-2"></i>
+                </button>
               </form>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // Get all elements with null checks
+          const enquireBtn = document.getElementById("enquire-btn");
+          const modal = document.getElementById("enquiry-modal");
+          const modalClose = document.getElementById("modal-close");
+          const form = document.getElementById("event-registration");
+
+          // Early return if essential elements don't exist
+          if (!modal || !form) {
+            console.warn(
+              "Essential modal elements not found. Skipping modal initialization."
+            );
+            return;
+          }
+
+          const submitBtn =
+            form.querySelector("button[type='submit']") ||
+            form.querySelector(".register-btn");
+          const addressTextarea = document.getElementById("popup-address");
+          const addressCount = document.getElementById("popup-addressCount");
+
+          // Track if modal has been shown to avoid showing multiple times
+          let modalShown = false;
+
+          // Auto-open modal after 5 seconds (only if modal exists)
+          setTimeout(() => {
+            if (!modalShown && modal) {
+              openModal("auto_popup_5sec");
+            }
+          }, 5000);
+
+          // Character counter for address field
+          if (addressTextarea && addressCount) {
+            addressTextarea.addEventListener("input", function () {
+              const length = this.value.length;
+              addressCount.textContent = `${length}/7 characters (minimum 7 required)`;
+
+              if (length < 7) {
+                addressCount.classList.add("invalid");
+                addressCount.style.color = "#dc3545";
+              } else {
+                addressCount.classList.remove("invalid");
+                addressCount.style.color = "#6c757d";
+              }
+            });
+          }
+
+          // Open modal - Handle multiple enquire buttons
+          function openModal(source = "enquire_btn") {
+            if (modalShown || !modal) return; // Prevent multiple opens
+
+            modalShown = true;
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+
+            // Set tracking information with source
+            setTrackingInfo(source);
+
+            setTimeout(() => {
+              const nameField = document.getElementById("popup-name");
+              if (nameField) {
+                nameField.focus();
+              }
+            }, 300);
+          }
+
+          // Main enquire button (with null check)
+          if (enquireBtn) {
+            enquireBtn.addEventListener("click", function (e) {
+              e.preventDefault();
+              openModal("main_enquire_btn");
+            });
+          }
+
+          // Sticky footer enquire button (with null check)
+          const stickyEnquireBtn = document.querySelector(
+            "#sticky-button-container .btn-enquire"
+          );
+          if (stickyEnquireBtn) {
+            stickyEnquireBtn.addEventListener("click", function (e) {
+              e.preventDefault();
+              openModal("sticky_enquire_btn");
+            });
+          }
+
+          // Book tickets buttons (with null checks)
+          const bookTicketsBtns = document.querySelectorAll(
+            "#book-tickets-btn, #book-tickets-btn-2"
+          );
+          bookTicketsBtns.forEach((btn, index) => {
+            if (btn) {
+              btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                openModal(`book_tickets_btn_${index + 1}`);
+              });
+            }
+          });
+
+          // Close modal
+          function closeModal() {
+            if (!modal) return;
+
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+
+            if (form) {
+              form.reset();
+            }
+
+            if (submitBtn) {
+              submitBtn.classList.remove("loading");
+              submitBtn.innerHTML = `REGISTER NOW <i class="bi bi-arrow-right-circle ms-2"></i>`;
+            }
+
+            // Reset address counter
+            if (addressCount) {
+              addressCount.textContent = "0/7 characters (minimum 7 required)";
+              addressCount.classList.remove("invalid");
+              addressCount.style.color = "#6c757d";
+            }
+
+            // Allow modal to be shown again after closing (for manual triggers)
+            setTimeout(() => {
+              modalShown = false;
+            }, 1000);
+          }
+
+          // Modal close button (with null check)
+          if (modalClose) {
+            modalClose.addEventListener("click", closeModal);
+          }
+
+          // Close on overlay click (only if modal exists)
+          if (modal) {
+            modal.addEventListener("click", function (e) {
+              if (e.target === modal) {
+                closeModal();
+              }
+            });
+          }
+
+          // Close on Escape key
+          document.addEventListener("keydown", function (e) {
+            if (
+              e.key === "Escape" &&
+              modal &&
+              modal.classList.contains("active")
+            ) {
+              closeModal();
+            }
+          });
+
+          // Set tracking information - Updated to accept source parameter
+          function setTrackingInfo(source = "enquire_btn") {
+            const now = new Date();
+            const timestampField = document.getElementById("popup-timestamp");
+            const sourceField = document.getElementById("popup-source");
+            const campaignField = document.getElementById("popup-campaign");
+            const channelField = document.getElementById("popup-channel");
+            const mediumField = document.getElementById("popup-medium");
+            const deviceField = document.getElementById("popup-device");
+            const gclidField = document.getElementById("popup-gclid");
+
+            if (timestampField) timestampField.value = now.toISOString();
+            if (sourceField) sourceField.value = source;
+            if (campaignField) campaignField.value = "cedar_festive_night";
+            if (channelField) channelField.value = "website";
+            if (mediumField) mediumField.value = "popup";
+            if (deviceField)
+              deviceField.value = /Mobi|Android/i.test(navigator.userAgent)
+                ? "mobile"
+                : "desktop";
+
+            // Get URL parameters if available
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get("gclid") && gclidField) {
+              gclidField.value = urlParams.get("gclid");
+            }
+          }
+
+          // Form submission with Google Sheets integration (only if form exists)
+          if (form) {
+            form.addEventListener("submit", function (e) {
+              e.preventDefault();
+
+              // Validate required fields
+              const name = document.getElementById("popup-name");
+              const email = document.getElementById("popup-email");
+              const phone = document.getElementById("popup-phone");
+              const address = document.getElementById("popup-address");
+
+              if (!name || !name.value.trim()) {
+                alert("Please enter your full name.");
+                if (name) name.focus();
+                return;
+              }
+
+              if (!email || !email.value.trim()) {
+                alert("Please enter your email address.");
+                if (email) email.focus();
+                return;
+              }
+
+              if (!phone || !phone.value.trim()) {
+                alert("Please enter your contact number.");
+                if (phone) phone.focus();
+                return;
+              }
+
+              if (!address || !address.value.trim()) {
+                alert("Please enter your residential address.");
+                if (address) address.focus();
+                return;
+              }
+
+              if (address.value.trim().length < 7) {
+                alert(
+                  "Please enter a complete address (minimum 7 characters)."
+                );
+                address.focus();
+                return;
+              }
+
+              // Email validation
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!emailRegex.test(email.value.trim())) {
+                alert("Please enter a valid email address.");
+                email.focus();
+                return;
+              }
+
+              // Phone validation (basic)
+              const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+              if (!phoneRegex.test(phone.value.trim())) {
+                alert("Please enter a valid phone number.");
+                phone.focus();
+                return;
+              }
+
+              if (submitBtn) {
+                submitBtn.classList.add("loading");
+                submitBtn.innerHTML = "REGISTERING...";
+              }
+
+              const formData = new FormData(this);
+              const data = Object.fromEntries(formData);
+
+              // Add additional data
+              data.submissionDate = new Date().toLocaleString("en-IN", {
+                timeZone: "Asia/Kolkata",
+              });
+              data.ipAddress = ""; // Will be filled by server if needed
+              data.userAgent = navigator.userAgent;
+
+              // Send to Google Sheets
+              saveToGoogleSheets(data)
+                .then((response) => {
+                  console.log("Registration data saved:", data);
+                  alert(
+                    "Registration successful! We will contact you soon with event details."
+                  );
+                  closeModal();
+                })
+                .catch((error) => {
+                  console.error("Error saving data:", error);
+                  alert(
+                    "Registration submitted! We will contact you soon. (Note: There was a technical issue with data backup)"
+                  );
+                  closeModal();
+                })
+                .finally(() => {
+                  if (submitBtn) {
+                    submitBtn.classList.remove("loading");
+                    submitBtn.innerHTML = `REGISTER NOW <i class="bi bi-arrow-right-circle ms-2"></i>`;
+                  }
+                });
+            });
+          }
+
+          // Function to save data to Google Sheets
+          async function saveToGoogleSheets(data) {
+            // Replace this URL with your Google Apps Script Web App URL
+            const GOOGLE_SCRIPT_URL =
+              "https://script.google.com/macros/s/AKfycbzGJ4J3PA-pQ1Pxk20-_qOXI7M3cu3IaCxKQUoHUTkpB1KLD8twL0LftpTn9r8Ur6bO/exec";
+
+            try {
+              const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+              });
+
+              // Check if response is ok
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+
+              const result = await response.text();
+              console.log("Google Sheets response:", result);
+              return { success: true };
+            } catch (error) {
+              console.error("Error sending to Google Sheets:", error);
+              throw error;
+            }
+          }
+        });
+      </script>
 
       <section id="sticky-button-container">
         <div class="sticky-buttons">
-          <a href="#" class="btn btn-enquire" id="enquire-btn">
+          <a href="#" class="btn btn-enquire" id="sticky-enquire-btn">
             <span>Enquire Now</span>
           </a>
           <a href="tel:+919597910910" class="btn btn-call">
@@ -535,7 +897,6 @@
         </div>
       </section>
 
-      <!-- Enquiry Popup Modal -->
       <!-- Enquiry Popup Modal -->
       <div id="enquiry-modal" class="modal-overlay">
         <div class="modal-container">
@@ -1392,7 +1753,7 @@
       </section>
 
       <section>
-        <div class="terms-conditions-section mt-5">
+        <div class="container mx-auto terms-conditions-section mt-5">
           <div class="terms-header">
             <h3 class="terms-title">Terms & Conditions</h3>
           </div>
@@ -1509,7 +1870,7 @@
             </div>
 
             <div class="phone-number">
-              Call: <a href="tel:9150009914">9150009914</a>
+              Call: <a href="tel:919597910910">+919597910910</a>
             </div>
 
             <div class="disclaimer">
@@ -1622,17 +1983,85 @@
         const modal = document.getElementById("enquiry-modal");
         const modalClose = document.getElementById("modal-close");
         const form = document.getElementById("event-registration");
-        const submitBtn = form.querySelector(".register-btn");
+        const submitBtn = form.querySelector("button[type='submit']");
+        const addressTextarea = document.getElementById("popup-address");
+        const addressCount = document.getElementById("popup-addressCount");
 
-        // Open modal
-        enquireBtn.addEventListener("click", function (e) {
-          e.preventDefault();
+        // Track if modal has been shown to avoid showing multiple times
+        let modalShown = false;
+
+        // Auto-open modal after 5 seconds
+        setTimeout(() => {
+          if (!modalShown) {
+            openModal("auto_popup_5sec");
+          }
+        }, 5000);
+
+        // Character counter for address field
+        if (addressTextarea && addressCount) {
+          addressTextarea.addEventListener("input", function () {
+            const length = this.value.length;
+            addressCount.textContent = `${length}/7 characters (minimum 7 required)`;
+
+            if (length < 7) {
+              addressCount.classList.add("invalid");
+              addressCount.style.color = "#dc3545";
+            } else {
+              addressCount.classList.remove("invalid");
+              addressCount.style.color = "#6c757d";
+            }
+          });
+        }
+
+        // Open modal - Handle multiple enquire buttons
+        function openModal(source = "enquire_btn") {
+          if (modalShown) return; // Prevent multiple opens
+
+          modalShown = true;
           modal.classList.add("active");
           document.body.style.overflow = "hidden";
 
+          // Set tracking information with source
+          setTrackingInfo(source);
+
           setTimeout(() => {
-            document.getElementById("fullname").focus();
+            const nameField = document.getElementById("popup-name");
+            if (nameField) {
+              nameField.focus();
+            }
           }, 300);
+        }
+
+        // Main enquire button
+        if (enquireBtn) {
+          enquireBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            openModal("main_enquire_btn");
+          });
+        }
+
+        // Sticky footer enquire button (updated selector)
+        const stickyEnquireBtn = document.querySelector(
+          "#sticky-button-container .btn-enquire"
+        );
+        if (stickyEnquireBtn) {
+          stickyEnquireBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            openModal("sticky_enquire_btn");
+          });
+        }
+
+        // Book tickets buttons
+        const bookTicketsBtns = document.querySelectorAll(
+          "#book-tickets-btn, #book-tickets-btn-2"
+        );
+        bookTicketsBtns.forEach((btn, index) => {
+          if (btn) {
+            btn.addEventListener("click", function (e) {
+              e.preventDefault();
+              openModal(`book_tickets_btn_${index + 1}`);
+            });
+          }
         });
 
         // Close modal
@@ -1640,11 +2069,28 @@
           modal.classList.remove("active");
           document.body.style.overflow = "";
           form.reset();
-          submitBtn.classList.remove("loading");
-          submitBtn.innerHTML = `REGISTER NOW <i class="bi bi-arrow-right-circle"></i>`;
+
+          if (submitBtn) {
+            submitBtn.classList.remove("loading");
+            submitBtn.innerHTML = `REGISTER NOW <i class="bi bi-arrow-right-circle ms-2"></i>`;
+          }
+
+          // Reset address counter
+          if (addressCount) {
+            addressCount.textContent = "0/7 characters (minimum 7 required)";
+            addressCount.classList.remove("invalid");
+            addressCount.style.color = "#6c757d";
+          }
+
+          // Allow modal to be shown again after closing (for manual triggers)
+          setTimeout(() => {
+            modalShown = false;
+          }, 1000);
         }
 
-        modalClose.addEventListener("click", closeModal);
+        if (modalClose) {
+          modalClose.addEventListener("click", closeModal);
+        }
 
         // Close on overlay click
         modal.addEventListener("click", function (e) {
@@ -1660,22 +2106,109 @@
           }
         });
 
+        // Set tracking information - Updated to accept source parameter
+        function setTrackingInfo(source = "enquire_btn") {
+          const now = new Date();
+          const timestampField = document.getElementById("popup-timestamp");
+          const sourceField = document.getElementById("popup-source");
+          const campaignField = document.getElementById("popup-campaign");
+          const channelField = document.getElementById("popup-channel");
+          const mediumField = document.getElementById("popup-medium");
+          const deviceField = document.getElementById("popup-device");
+          const gclidField = document.getElementById("popup-gclid");
+
+          if (timestampField) timestampField.value = now.toISOString();
+          if (sourceField) sourceField.value = source;
+          if (campaignField) campaignField.value = "cedar_festive_night";
+          if (channelField) channelField.value = "website";
+          if (mediumField) mediumField.value = "popup";
+          if (deviceField)
+            deviceField.value = /Mobi|Android/i.test(navigator.userAgent)
+              ? "mobile"
+              : "desktop";
+
+          // Get URL parameters if available
+          const urlParams = new URLSearchParams(window.location.search);
+          if (urlParams.get("gclid") && gclidField) {
+            gclidField.value = urlParams.get("gclid");
+          }
+        }
+
         // Form submission
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-          submitBtn.classList.add("loading");
-          submitBtn.innerHTML = "REGISTERING...";
+            // Validate required fields
+            const name = document.getElementById("popup-name");
+            const email = document.getElementById("popup-email");
+            const phone = document.getElementById("popup-phone");
+            const address = document.getElementById("popup-address");
 
-          const formData = new FormData(this);
-          const data = Object.fromEntries(formData);
+            if (!name || !name.value.trim()) {
+              alert("Please enter your full name.");
+              if (name) name.focus();
+              return;
+            }
 
-          setTimeout(() => {
-            console.log("Registration data:", data);
-            alert("Registration successful! We will contact you soon.");
-            closeModal();
-          }, 2000);
-        });
+            if (!email || !email.value.trim()) {
+              alert("Please enter your email address.");
+              if (email) email.focus();
+              return;
+            }
+
+            if (!phone || !phone.value.trim()) {
+              alert("Please enter your contact number.");
+              if (phone) phone.focus();
+              return;
+            }
+
+            if (!address || !address.value.trim()) {
+              alert("Please enter your residential address.");
+              if (address) address.focus();
+              return;
+            }
+
+            if (address.value.trim().length < 7) {
+              alert("Please enter a complete address (minimum 7 characters).");
+              address.focus();
+              return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+              alert("Please enter a valid email address.");
+              email.focus();
+              return;
+            }
+
+            // Phone validation (basic)
+            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+            if (!phoneRegex.test(phone.value.trim())) {
+              alert("Please enter a valid phone number.");
+              phone.focus();
+              return;
+            }
+
+            if (submitBtn) {
+              submitBtn.classList.add("loading");
+              submitBtn.innerHTML = "REGISTERING...";
+            }
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Simulate API call
+            setTimeout(() => {
+              console.log("Registration data:", data);
+              alert(
+                "Registration successful! We will contact you soon with event details."
+              );
+              closeModal();
+            }, 2000);
+          });
+        }
       });
     </script>
   </body>

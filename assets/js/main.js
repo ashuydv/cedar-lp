@@ -498,4 +498,181 @@
       }, 2000);
     });
   });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const enquireBtn = document.getElementById("enquire-btn");
+    const modal = document.getElementById("enquiry-modal");
+    const modalClose = document.getElementById("modal-close");
+    const form = document.getElementById("event-registration");
+    const submitBtn = form.querySelector("button[type='submit']");
+    const addressTextarea = document.getElementById("popup-address");
+    const addressCount = document.getElementById("popup-addressCount");
+
+    // Character counter for address field
+    if (addressTextarea && addressCount) {
+      addressTextarea.addEventListener("input", function () {
+        const length = this.value.length;
+        addressCount.textContent = `${length}/7 characters (minimum 7 required)`;
+
+        if (length < 7) {
+          addressCount.classList.add("invalid");
+          addressCount.style.color = "#dc3545";
+        } else {
+          addressCount.classList.remove("invalid");
+          addressCount.style.color = "#6c757d";
+        }
+      });
+    }
+
+    // Open modal - Handle multiple enquire buttons
+    function openModal(source = "enquire_btn") {
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+
+      // Set tracking information with source
+      setTrackingInfo(source);
+
+      setTimeout(() => {
+        document.getElementById("popup-name").focus();
+      }, 300);
+    }
+
+    // Main enquire button
+    if (enquireBtn) {
+      enquireBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        openModal("main_enquire_btn");
+      });
+    }
+
+    // Sticky footer enquire button
+    const stickyEnquireBtn = document.querySelector(
+      ".sticky-buttons .btn-enquire"
+    );
+    if (stickyEnquireBtn) {
+      stickyEnquireBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        openModal("sticky_enquire_btn");
+      });
+    }
+
+    // Any other enquire buttons on the page
+    const allEnquireBtns = document.querySelectorAll(
+      '[id*="enquire"], [class*="enquire"], a[href*="enquire"]'
+    );
+    allEnquireBtns.forEach((btn, index) => {
+      if (btn !== enquireBtn && btn !== stickyEnquireBtn) {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          openModal(`enquire_btn_${index + 1}`);
+        });
+      }
+    });
+
+    // Close modal
+    function closeModal() {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+      form.reset();
+      submitBtn.classList.remove("loading");
+      submitBtn.innerHTML = `REGISTER NOW <i class="bi bi-arrow-right-circle ms-2"></i>`;
+
+      // Reset address counter
+      if (addressCount) {
+        addressCount.textContent = "0/7 characters (minimum 7 required)";
+        addressCount.classList.remove("invalid");
+        addressCount.style.color = "#6c757d";
+      }
+    }
+
+    modalClose.addEventListener("click", closeModal);
+
+    // Close on overlay click
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("active")) {
+        closeModal();
+      }
+    });
+
+    // Set tracking information - Updated to accept source parameter
+    function setTrackingInfo(source = "enquire_btn") {
+      const now = new Date();
+      document.getElementById("popup-timestamp").value = now.toISOString();
+      document.getElementById("popup-source").value = source;
+      document.getElementById("popup-campaign").value = "cedar_festive_night";
+      document.getElementById("popup-channel").value = "website";
+      document.getElementById("popup-medium").value = "popup";
+      document.getElementById("popup-device").value = /Mobi|Android/i.test(
+        navigator.userAgent
+      )
+        ? "mobile"
+        : "desktop";
+
+      // Get URL parameters if available
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("gclid")) {
+        document.getElementById("popup-gclid").value = urlParams.get("gclid");
+      }
+    }
+
+    // Form submission
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Validate required fields
+      const name = document.getElementById("popup-name").value.trim();
+      const email = document.getElementById("popup-email").value.trim();
+      const phone = document.getElementById("popup-phone").value.trim();
+      const address = document.getElementById("popup-address").value.trim();
+
+      if (!name || !email || !phone || !address) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      if (address.length < 7) {
+        alert("Please enter a complete address (minimum 7 characters).");
+        document.getElementById("popup-address").focus();
+        return;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        document.getElementById("popup-email").focus();
+        return;
+      }
+
+      // Phone validation (basic)
+      const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+      if (!phoneRegex.test(phone)) {
+        alert("Please enter a valid phone number.");
+        document.getElementById("popup-phone").focus();
+        return;
+      }
+
+      submitBtn.classList.add("loading");
+      submitBtn.innerHTML = "REGISTERING...";
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+
+      // Simulate API call
+      setTimeout(() => {
+        console.log("Registration data:", data);
+        alert(
+          "Registration successful! We will contact you soon with event details."
+        );
+        closeModal();
+      }, 2000);
+    });
+  });
 })();
