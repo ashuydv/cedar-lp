@@ -44,7 +44,7 @@
         <div
           class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
         >
-          <a href="#home" class="logo d-flex align-items-center">
+          <a href="/" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <img
               src="./assets/img/logo.jpg"
@@ -1875,8 +1875,109 @@
     </script>
 
     <script>
+      // Global function to save data to Google Sheets - accessible by both forms
+      async function saveToGoogleSheets(data) {
+        const GOOGLE_SCRIPT_URL =
+          "https://script.google.com/macros/s/AKfycbx_6fwQ8yPv3E4SbJtmhKAgCP7LjR_7XmbaqdHSnzuY69EZ1XI2IaSxL_lR7iDA1_M/exec";
+
+        try {
+          // Convert data to URL parameters for GET request (no CORS issues)
+          const params = new URLSearchParams();
+
+          // Add all data fields to URL parameters
+          Object.keys(data).forEach((key) => {
+            params.append(key, data[key] || "");
+          });
+
+          // Use GET request with parameters - no CORS preflight
+          const response = await fetch(
+            `${GOOGLE_SCRIPT_URL}?${params.toString()}`,
+            {
+              method: "GET",
+            }
+          );
+
+          // Check if response is ok
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.text();
+          return { success: true };
+        } catch (error) {
+          console.error("Error sending to Google Sheets:", error);
+          throw error;
+        }
+      }
+
+      // Global notification system
+      function createNotification(message, type = "success", duration = 5000) {
+        // Remove existing notifications
+        const existingNotifs = document.querySelectorAll(
+          ".custom-notification"
+        );
+        existingNotifs.forEach((notif) => notif.remove());
+
+        const notification = document.createElement("div");
+        notification.className = `custom-notification ${type}`;
+        notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: ${
+        type === "success"
+          ? "#28a745"
+          : type === "error"
+          ? "#dc3545"
+          : "#ffc107"
+      };
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10000;
+      max-width: 350px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      transform: translateX(100%);
+      transition: all 0.3s ease;
+    `;
+        notification.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 18px;">
+          ${type === "success" ? "✓" : type === "error" ? "✕" : "ℹ"}
+        </span>
+        <span>${message}</span>
+        <button onclick="this.parentElement.parentElement.remove()" 
+                style="background: none; border: none; color: white; font-size: 16px; cursor: pointer; margin-left: auto; padding: 0; line-height: 1;">
+          ✕
+        </button>
+      </div>
+    `;
+
+        document.body.appendChild(notification);
+
+        // Animate in
+        setTimeout(() => {
+          notification.style.transform = "translateX(0)";
+        }, 10);
+
+        // Auto remove
+        setTimeout(() => {
+          if (notification.parentElement) {
+            notification.style.transform = "translateX(100%)";
+            setTimeout(() => notification.remove(), 300);
+          }
+        }, duration);
+
+        return notification;
+      }
+    </script>
+
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Get all elements with null checks
+        // Registration form handler (your existing code)
         const enquireBtn = document.getElementById("enquire-btn");
         const modal = document.getElementById("enquiry-modal");
         const modalClose = document.getElementById("modal-close");
@@ -1898,9 +1999,9 @@
 
         // Track if modal has been shown to avoid showing multiple times
         let modalShown = false;
-        let isSubmitting = false; // Prevent multiple submissions
+        let isSubmitting = false;
 
-        // Auto-open modal after 5 seconds (only if modal exists)
+        // Auto-open modal after 5 seconds
         setTimeout(() => {
           if (!modalShown && modal) {
             openModal("auto_popup_5sec");
@@ -1923,85 +2024,13 @@
           });
         }
 
-        // Create notification system
-        function createNotification(
-          message,
-          type = "success",
-          duration = 5000
-        ) {
-          // Remove existing notifications
-          const existingNotifs = document.querySelectorAll(
-            ".custom-notification"
-          );
-          existingNotifs.forEach((notif) => notif.remove());
-
-          const notification = document.createElement("div");
-          notification.className = `custom-notification ${type}`;
-          notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: ${
-              type === "success"
-                ? "#28a745"
-                : type === "error"
-                ? "#dc3545"
-                : "#ffc107"
-            };
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            z-index: 10000;
-            max-width: 350px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 14px;
-            line-height: 1.4;
-            transform: translateX(100%);
-            transition: all 0.3s ease;
-          `;
-          notification.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="font-size: 18px;">
-                ${type === "success" ? "✓" : type === "error" ? "✕" : "ℹ"}
-              </span>
-              <span>${message}</span>
-              <button onclick="this.parentElement.parentElement.remove()" 
-                      style="background: none; border: none; color: white; font-size: 16px; cursor: pointer; margin-left: auto; padding: 0; line-height: 1;">
-                ✕
-              </button>
-            </div>
-          `;
-
-          document.body.appendChild(notification);
-
-          // Animate in
-          setTimeout(() => {
-            notification.style.transform = "translateX(0)";
-          }, 10);
-
-          // Auto remove
-          setTimeout(() => {
-            if (notification.parentElement) {
-              notification.style.transform = "translateX(100%)";
-              setTimeout(() => notification.remove(), 300);
-            }
-          }, duration);
-
-          return notification;
-        }
-
         // Enhanced field validation with visual feedback
         function validateField(field, message) {
-          // Remove existing error styling
           field.style.border = "";
           field.style.boxShadow = "";
-
-          // Add error styling
           field.style.border = "2px solid #dc3545";
           field.style.boxShadow = "0 0 0 0.2rem rgba(220, 53, 69, 0.25)";
 
-          // Remove error styling after user starts typing
           const removeError = () => {
             field.style.border = "";
             field.style.boxShadow = "";
@@ -2009,24 +2038,19 @@
           };
           field.addEventListener("input", removeError);
 
-          // Focus the field
           field.focus();
-
-          // Show notification instead of alert
           createNotification(message, "error", 4000);
-
           return false;
         }
 
-        // Open modal - Handle multiple enquire buttons
+        // Open modal
         function openModal(source = "enquire_btn") {
-          if (modalShown || !modal) return; // Prevent multiple opens
+          if (modalShown || !modal) return;
 
           modalShown = true;
           modal.classList.add("active");
           document.body.style.overflow = "hidden";
 
-          // Set tracking information with source
           setTrackingInfo(source);
 
           setTimeout(() => {
@@ -2037,7 +2061,7 @@
           }, 300);
         }
 
-        // Main enquire button (with null check)
+        // Event listeners for buttons
         if (enquireBtn) {
           enquireBtn.addEventListener("click", function (e) {
             e.preventDefault();
@@ -2045,7 +2069,6 @@
           });
         }
 
-        // Sticky footer enquire button (with null check)
         const stickyEnquireBtn = document.querySelector(
           "#sticky-button-container .btn-enquire"
         );
@@ -2056,7 +2079,6 @@
           });
         }
 
-        // Book tickets buttons (with null checks)
         const bookTicketsBtns = document.querySelectorAll(
           "#book-tickets-btn, #book-tickets-btn-2"
         );
@@ -2085,28 +2107,23 @@
             submitBtn.innerHTML = `REGISTER NOW <i class="bi bi-arrow-right-circle ms-2"></i>`;
           }
 
-          // Reset address counter
           if (addressCount) {
             addressCount.textContent = "0/7 characters (minimum 7 required)";
             addressCount.classList.remove("invalid");
             addressCount.style.color = "#6c757d";
           }
 
-          // Reset submission state
           isSubmitting = false;
 
-          // Allow modal to be shown again after closing (for manual triggers)
           setTimeout(() => {
             modalShown = false;
           }, 1000);
         }
 
-        // Modal close button (with null check)
         if (modalClose) {
           modalClose.addEventListener("click", closeModal);
         }
 
-        // Close on overlay click (only if modal exists)
         if (modal) {
           modal.addEventListener("click", function (e) {
             if (e.target === modal) {
@@ -2115,7 +2132,6 @@
           });
         }
 
-        // Close on Escape key
         document.addEventListener("keydown", function (e) {
           if (
             e.key === "Escape" &&
@@ -2126,7 +2142,7 @@
           }
         });
 
-        // Set tracking information - Updated to accept source parameter
+        // Set tracking information
         function setTrackingInfo(source = "enquire_btn") {
           const now = new Date();
           const timestampField = document.getElementById("popup-timestamp");
@@ -2147,19 +2163,17 @@
               ? "mobile"
               : "desktop";
 
-          // Get URL parameters if available
           const urlParams = new URLSearchParams(window.location.search);
           if (urlParams.get("gclid") && gclidField) {
             gclidField.value = urlParams.get("gclid");
           }
         }
 
-        // Enhanced form submission with better UX
+        // Enhanced form submission
         if (form) {
           form.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            // Prevent multiple submissions
             if (isSubmitting) {
               createNotification(
                 "Please wait, your registration is being processed...",
@@ -2169,7 +2183,7 @@
               return;
             }
 
-            // Validate required fields with enhanced UX
+            // Validate required fields
             const name = document.getElementById("popup-name");
             const email = document.getElementById("popup-email");
             const phone = document.getElementById("popup-phone");
@@ -2219,7 +2233,7 @@
               );
             }
 
-            // Phone validation (basic)
+            // Phone validation
             const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
             if (!phoneRegex.test(phone.value.trim())) {
               return validateField(
@@ -2228,7 +2242,6 @@
               );
             }
 
-            // Set submitting state
             isSubmitting = true;
 
             // Enhanced loading state
@@ -2237,68 +2250,60 @@
               submitBtn.style.opacity = "0.7";
               submitBtn.style.cursor = "not-allowed";
               submitBtn.innerHTML = `
-                <span style="display: inline-flex; align-items: center; gap: 8px;">
-                  <span style="width: 16px; height: 16px; border: 2px solid #fff; border-top: 2px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></span>
-                  REGISTERING...
-                </span>
-              `;
+            <span style="display: inline-flex; align-items: center; gap: 8px;">
+              <span style="width: 16px; height: 16px; border: 2px solid #fff; border-top: 2px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></span>
+              REGISTERING...
+            </span>
+          `;
             }
 
-            // Add loading animation CSS if not already present
+            // Add loading animation CSS
             if (!document.getElementById("loading-styles")) {
               const style = document.createElement("style");
               style.id = "loading-styles";
               style.textContent = `
-                @keyframes spin {
-                  0% { transform: rotate(0deg); }
-                  100% { transform: rotate(360deg); }
-                }
-              `;
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `;
               document.head.appendChild(style);
             }
 
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
 
-            // Add additional data
             data.submissionDate = new Date().toLocaleString("en-IN", {
               timeZone: "Asia/Kolkata",
             });
-            data.ipAddress = ""; // Will be filled by server if needed
             data.userAgent = navigator.userAgent;
 
             // Send to Google Sheets
             saveToGoogleSheets(data)
               .then((response) => {
-                // Success notification
                 createNotification(
-                  "🎉 Registration successful! We'll contact you soon with event details.",
+                  "Registration successful! We'll contact you soon with event details.",
                   "success",
                   6000
                 );
 
-                // Close modal after a short delay
                 setTimeout(() => {
                   closeModal();
                 }, 2000);
               })
               .catch((error) => {
                 console.error("Error saving data:", error);
-
-                // Error notification (but still positive)
                 createNotification(
                   "Registration submitted! We'll contact you soon. (Note: There was a technical issue with data backup)",
                   "warning",
                   6000
                 );
 
-                // Close modal after a short delay
                 setTimeout(() => {
                   closeModal();
                 }, 2000);
               })
               .finally(() => {
-                // Reset button state
                 if (submitBtn) {
                   submitBtn.classList.remove("loading");
                   submitBtn.style.opacity = "";
@@ -2306,47 +2311,128 @@
                   submitBtn.innerHTML = `REGISTER NOW <i class="bi bi-arrow-right-circle ms-2"></i>`;
                 }
 
-                // Reset submission state after a delay
                 setTimeout(() => {
                   isSubmitting = false;
                 }, 2000);
               });
           });
         }
+      });
+    </script>
 
-        // FIXED: Function to save data to Google Sheets - No CORS issues with GET
-        async function saveToGoogleSheets(data) {
-          const GOOGLE_SCRIPT_URL =
-            "https://script.google.com/macros/s/AKfycbzAIisB44btq0JVmbwzU49CBCiKkea8MCphAfBmKv2vzqs7Gan6kL-es4nmqjC7kIcU/exec";
+    <script>
+      // Contact Form Handler
+      document.addEventListener("DOMContentLoaded", function () {
+        const contactForm = document.getElementById("contactForm");
 
-          try {
-            // Convert data to URL parameters for GET request (no CORS issues)
-            const params = new URLSearchParams();
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-            // Add all data fields to URL parameters
-            Object.keys(data).forEach((key) => {
-              params.append(key, data[key] || "");
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Add tracking data
+            data.formType = "contact";
+            data.submissionDate = new Date().toLocaleString("en-IN", {
+              timeZone: "Asia/Kolkata",
             });
+            data.source = "contact_form";
+            data.campaign = "cedar_contact";
+            data.device = /Mobi|Android/i.test(navigator.userAgent)
+              ? "mobile"
+              : "desktop";
+            data.userAgent = navigator.userAgent;
 
-            // Use GET request with parameters - no CORS preflight
-            const response = await fetch(
-              `${GOOGLE_SCRIPT_URL}?${params.toString()}`,
-              {
-                method: "GET",
-              }
-            );
+            // Validate required fields
+            const name = data.name?.trim();
+            const email = data.email?.trim();
+            const mobile = data.mobile?.trim();
 
-            // Check if response is ok
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
+            if (!name) {
+              createNotification("Please enter your name.", "error", 4000);
+              contactForm.querySelector('input[name="name"]').focus();
+              return;
             }
 
-            const result = await response.text();
-            return { success: true };
-          } catch (error) {
-            console.error("Error sending to Google Sheets:", error);
-            throw error;
-          }
+            if (!email) {
+              createNotification(
+                "Please enter your email address.",
+                "error",
+                4000
+              );
+              contactForm.querySelector('input[name="email"]').focus();
+              return;
+            }
+
+            if (!mobile) {
+              createNotification(
+                "Please enter your mobile number.",
+                "error",
+                4000
+              );
+              contactForm.querySelector('input[name="mobile"]').focus();
+              return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+              createNotification(
+                "Please enter a valid email address.",
+                "error",
+                4000
+              );
+              contactForm.querySelector('input[name="email"]').focus();
+              return;
+            }
+
+            // Phone validation
+            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+            if (!phoneRegex.test(mobile)) {
+              createNotification(
+                "Please enter a valid mobile number.",
+                "error",
+                4000
+              );
+              contactForm.querySelector('input[name="mobile"]').focus();
+              return;
+            }
+
+            // Show loading state
+            const submitBtn = contactForm.querySelector(".btn-cta");
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = "Submitting...";
+            submitBtn.style.opacity = "0.7";
+            submitBtn.disabled = true;
+
+            // Send to Google Sheets
+            saveToGoogleSheets(data)
+              .then((response) => {
+                createNotification(
+                  "Thank you! Your inquiry has been submitted successfully. We'll contact you soon.",
+                  "success",
+                  6000
+                );
+                contactForm.reset();
+              })
+              .catch((error) => {
+                console.error("Error saving contact data:", error);
+                createNotification(
+                  "Your inquiry has been submitted. We'll contact you soon.",
+                  "success",
+                  6000
+                );
+                contactForm.reset();
+              })
+              .finally(() => {
+                // Reset button state
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.style.opacity = "";
+                submitBtn.disabled = false;
+              });
+          });
         }
       });
     </script>
