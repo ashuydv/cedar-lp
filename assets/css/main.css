@@ -932,7 +932,23 @@ section,
 
 @media (max-width: 768px) {
   .intro .content h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .intro .content .lead {
+    font-size: 1rem !important;
+    font-weight: normal !important;
+    line-height: normal !important;
+  }
+
+  #book-tickets-btn-2 {
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .intro .cta-section .btn {
+    justify-content: center;
   }
 }
 
@@ -6716,7 +6732,7 @@ section,
   #hero .background-overlay img {
     border-radius: 0.75rem;
     padding: 0.25rem;
-    margin-top: 8rem;
+    margin-top: 5rem;
   }
 
   #hero .background-overlay picture,
@@ -6974,12 +6990,12 @@ section,
   }
 
   .event-stats .stat-number {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     letter-spacing: 1px;
   }
 
   .event-stats .stat-label {
-    font-size: 0.8rem;
+    font-size: 0.5rem;
     margin-top: 8px;
   }
 
