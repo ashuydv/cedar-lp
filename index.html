@@ -46,10 +46,11 @@
         >
           <a href="#home" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
-            <video width="200" autoplay muted loop>
-              <source src="./assets/img/Web logo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <img
+              src="./assets/img/logo.jpg"
+              alt="Cedar Festive Logo"
+              width="100"
+            />
 
             <!-- <h1 class="sitename">Cedar Festive</h1> -->
           </a>
@@ -302,6 +303,8 @@
                       0/7 characters (minimum 7 required)
                     </div>
                   </div>
+
+                  <!-- Home Buying Interest -->
                   <div class="mb-3">
                     <label class="form-label"
                       >Are you interested in Home Buying at Navin's
@@ -344,6 +347,172 @@
                         Maybe, I'd like more information during the event
                       </label>
                     </div>
+                  </div>
+
+                  <!-- Planning to Buy Home in Chennai -->
+                  <div class="mb-3">
+                    <label class="form-label"
+                      >Are you planning to buy a home in Chennai?</label
+                    >
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="planningToBuy"
+                        id="activelyLooking"
+                        value="actively_looking"
+                        checked
+                      />
+                      <label class="form-check-label" for="activelyLooking">
+                        Yes, actively looking
+                      </label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="planningToBuy"
+                        id="exploringOptions"
+                        value="exploring_options"
+                      />
+                      <label class="form-check-label" for="exploringOptions">
+                        Exploring options
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="planningToBuy"
+                        id="notRightNow"
+                        value="not_right_now"
+                      />
+                      <label class="form-check-label" for="notRightNow">
+                        Not right now
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Preferred Home Size -->
+                  <div class="mb-3">
+                    <label class="form-label">Preferred Home Size</label>
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="homeSize"
+                        id="twoBhk"
+                        value="2_bhk"
+                        checked
+                      />
+                      <label class="form-check-label" for="twoBhk">
+                        2 BHK
+                      </label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="homeSize"
+                        id="threeBhk"
+                        value="3_bhk"
+                      />
+                      <label class="form-check-label" for="threeBhk">
+                        3 BHK
+                      </label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="homeSize"
+                        id="fourBhk"
+                        value="3.5_4_bhk"
+                      />
+                      <label class="form-check-label" for="fourBhk">
+                        3.5 / 4 BHK
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="homeSize"
+                        id="justConcert"
+                        value="just_concert"
+                      />
+                      <label class="form-check-label" for="justConcert">
+                        Just attending the concert
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Budget Range -->
+                  <div class="mb-3">
+                    <label class="form-label">Budget Range (₹)</label>
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="budgetRange"
+                        id="budget1"
+                        value="below_1cr"
+                        checked
+                      />
+                      <label class="form-check-label" for="budget1">
+                        < 1 Cr
+                      </label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="budgetRange"
+                        id="budget2"
+                        value="1_to_1.5cr"
+                      />
+                      <label class="form-check-label" for="budget2">
+                        1 Cr – 1.5 Cr
+                      </label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="budgetRange"
+                        id="budget3"
+                        value="1.5_to_2cr"
+                      />
+                      <label class="form-check-label" for="budget3">
+                        1.5 Cr – 2 Cr
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="budgetRange"
+                        id="budget4"
+                        value="above_2cr"
+                      />
+                      <label class="form-check-label" for="budget4">
+                        2 Cr+
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Preferred Location -->
+                  <div class="mb-3">
+                    <label for="preferredLocation" class="form-label"
+                      >Preferred Location</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="preferredLocation"
+                      name="preferredLocation"
+                      placeholder="Enter your preferred location in Chennai"
+                    />
                   </div>
                 </div>
 
@@ -407,16 +576,6 @@
                   placeholder="Your Phone Number"
                   required
                 />
-              </div>
-
-              <div class="form-group">
-                <select id="price-tab" name="plan_to_visit" required>
-                  <option value="">Select Your Price Tab</option>
-                  <option value="Early Bird">Early Bird - $99</option>
-                  <option value="Regular">Regular - $149</option>
-                  <option value="VIP Package">VIP Package - $299</option>
-                  <option value="Group Discount">Group Discount - $79</option>
-                </select>
               </div>
 
               <!-- Hidden Tracking Fields -->
@@ -694,8 +853,8 @@
           <div class="section-title">
             <h2>Upcoming Projects</h2>
             <p>
-              Live Life Singapore Style with thoughtfully designed 3 BHK homes
-              at Navin's Cedar Tower
+              Live Life Singapore Style with thoughtfully designed 3 BHLK homes
+              at Navin's Cedar Tower
             </p>
           </div>
           <!-- End Section Title -->
@@ -727,7 +886,7 @@
                       </div>
                       <div class="meta-item">
                         <span class="meta-label">Configuration</span>
-                        <span class="meta-value">3 BHK Apartments</span>
+                        <span class="meta-value">3BHLK</span>
                       </div>
                       <div class="meta-item">
                         <span class="meta-label">Area</span>
@@ -736,7 +895,7 @@
                       <div class="meta-item">
                         <span class="meta-label">Price</span>
                         <span class="meta-value price-highlight"
-                          >₹ 1.45 Cr* Onwards</span
+                          >1.47 Cr* Onwards</span
                         >
                       </div>
                       <div class="meta-item">
@@ -752,11 +911,12 @@
                     <!-- Special Offer Box -->
                     <div class="offer-box">
                       <div class="offer-title">
-                        FREE Home Theater Worth ₹5 Lakhs
+                        Special Launch Offer – Get a Home Theater Setup worth ₹5
+                        Lakh
                       </div>
                       <div class="offer-items">
                         <ul>
-                          <li>One 65" TV</li>
+                          <li>One 65” Branded TV</li>
                           <li>5.1 Home Theater</li>
                           <li>2 Recliner Couch</li>
                         </ul>
@@ -771,8 +931,8 @@
                     <p>
                       Navin's CEDAR, the grand finale of Starwood Towers in
                       Medavakkam. It stands tall with Basement + Stilt + 21
-                      floors, presenting 166 premium 3 BHK homes. Designed with
-                      a balcony for breathtaking views and a versatile
+                      floors, presenting 166 premium homes. Designed with a
+                      balcony for breathtaking views and a versatile
                       multi-purpose room, every home is crafted for a lifestyle
                       beyond the ordinary.
                     </p>
@@ -823,12 +983,6 @@
                         <i class="bi bi-download"></i>Download Brochure
                       </a>
                     </div>
-
-                    <!-- Learn More Link -->
-                    <a href="#" class="learn-more-link">
-                      View Complete Details
-                      <i class="bi bi-arrow-right"></i>
-                    </a>
                   </div>
                 </div>
               </div>
@@ -1106,7 +1260,7 @@
             <div class="col-lg-12">
               <div class="map-container">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8317!3d-6.208763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f69c8d2a9b7d%3A0x4a9f1c7e8b2f3a4c!2sGalleria%20Mall!5e0!3m2!1sen!2sid!4v1647834425890!5m2!1sen!2sid"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.237207294602!2d80.182283!3d12.906388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525c14838f9d19%3A0x97a573a3d61f793c!2s10921578158109434988!5e0!3m2!1sen!2sin!4v1726751111111!5m2!1sen!2sin"
                   width="100%"
                   height="500"
                   style="border: 0"
@@ -1115,6 +1269,7 @@
                   referrerpolicy="no-referrer-when-downgrade"
                 >
                 </iframe>
+
                 <div class="map-overlay">
                   <div class="map-info">
                     <h4>Navin's Cedar at Starwood Towers</h4>
@@ -1133,9 +1288,13 @@
                       </div>
                       <span class="review-count">8 reviews</span>
                     </div>
-                    <a href="#location" class="btn btn-primary btn-sm"
-                      >Directions</a
+                    <a
+                      href="https://www.google.com/maps?ll=12.906388,80.182283&z=17&t=h&hl=en&gl=IN&mapclient=embed&cid=10921578158109434988"
+                      target="_blank"
+                      class="btn btn-primary btn-sm"
                     >
+                      Directions
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1232,43 +1391,144 @@
         </div>
       </section>
 
-      <!-- Call To Action Section -->
-      <section
-        id="call-to-action"
-        class="call-to-action section dark-background"
-      >
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-              <h2 class="display-4 mb-4">
-                Ready to Transform Your Professional Network?
-              </h2>
-              <p class="lead mb-5">
-                Join industry leaders and innovators at the premier professional
-                development conference. Secure your place among 5,000+
-                forward-thinking professionals from 25+ countries.
-              </p>
-            </div>
+      <section>
+        <div class="terms-conditions-section mt-5">
+          <div class="terms-header">
+            <h3 class="terms-title">Terms & Conditions</h3>
           </div>
-          <div class="row justify-content-center">
-            <div class="col-lg-6 text-center">
-              <div class="cta-content">
-                <div class="cta-buttons">
-                  <a
-                    href="./assets/cedar.pdf"
-                    class="btn btn-outline-secondary btn-sm"
-                    target="_blank"
-                    download
-                  >
-                    Download Brochure
-                  </a>
-                </div>
+
+          <div class="terms-content">
+            <div class="terms-box">
+              <ul class="terms-list">
+                <li>Entry permitted only for guests aged 23 and above.</li>
+                <li>
+                  Tickets are limited and will be issued based on selection and
+                  criteria.
+                </li>
+                <li>
+                  Entry is valid only as per the ticket type (e.g.,
+                  single-person tickets admit one person only).
+                </li>
+                <li>
+                  Photos/videos may be taken during the event. By attending, you
+                  consent to their use in promotional material.
+                </li>
+                <li>
+                  Only guests with valid tickets will be allowed entry. No
+                  outside guests or unregistered attendees permitted.
+                </li>
+                <li>
+                  Organizers are not responsible for loss or damage of personal
+                  items.
+                </li>
+                <li>
+                  The event schedule may be modified due to unforeseen
+                  circumstances.
+                </li>
+                <li>
+                  All programs, performances, and schedules are subject to
+                  change without prior notice.
+                </li>
+              </ul>
+            </div>
+
+            <div class="terms-agreement mt-4">
+              <div class="agreement-note">
+                <p>
+                  <strong>Important:</strong> By registering for this event, you
+                  automatically agree to all the above terms and conditions.
+                  Please ensure you meet the age requirement of 23 years and
+                  above before proceeding with registration.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <!-- /Call To Action Section -->
+
+      <section class="contact-cta">
+        <div class="container">
+          <div class="cta-content">
+            <h2 class="display-4 mb-4">Contact Us</h2>
+            <p>To Know More About Floor Plan and Amenities</p>
+          </div>
+
+          <div class="form-intro">
+            <p>Please enter the details below to get detail informations!</p>
+          </div>
+
+          <div class="cta-form">
+            <form id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    placeholder="Name"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="tel"
+                    class="form-control"
+                    name="mobile"
+                    placeholder="Mobile"
+                    required
+                  />
+                </div>
+              </div>
+
+              <button type="submit" class="btn-cta">
+                Submit Now
+                <div class="arrows">
+                  <i class="fas fa-arrow-right"></i>
+                  <i class="fas fa-arrow-right"></i>
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </button>
+            </form>
+          </div>
+
+          <div class="contact-info">
+            <div class="company-address">
+              Site Address: Navin Housing & properties (P) Ltd Navin's Triumph -
+              #802 & 804, Anna Salai, Nandanam, Chennai - 600 035
+            </div>
+
+            <div class="phone-number">
+              Call: <a href="tel:9150009914">9150009914</a>
+            </div>
+
+            <div class="disclaimer">
+              Disclaimer: The imagery used and details given may not represent
+              actuals but are only indicative. Interested party should verify
+              and confirm all the information including designs, plans,
+              specifications, facilities, features, payment schedules, terms of
+              sale etc., independently with the company prior to conclusion of
+              sale. The company will not be responsible for the consequences of
+              any action taken by the viewer relying on such material/
+              information without independently verifying with the company. The
+              company will not be liable for any direct, indirect, special,
+              incidental, or consequential damages arising out of the
+              information contained herein. Accessories, furniture, etc. shown
+              are not part of unit and are illustrations.
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <!-- Scroll Top -->
     <!-- <a

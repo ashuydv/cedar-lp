@@ -367,19 +367,6 @@
       }
     });
 
-    // Price option selection styling
-    const priceOptions = document.querySelectorAll(".price-option");
-    priceOptions.forEach((option) => {
-      option.addEventListener("click", function () {
-        const radioInput = this.querySelector('input[type="radio"]');
-        radioInput.checked = true;
-
-        // Update visual selection
-        priceOptions.forEach((opt) => opt.classList.remove("selected"));
-        this.classList.add("selected");
-      });
-    });
-
     // Form submission
     const registrationForm = document.getElementById("registrationForm");
     registrationForm.addEventListener("submit", function (e) {
@@ -397,13 +384,6 @@
         "Registration successful! We look forward to seeing you at the event."
       );
       registrationForm.reset();
-
-      // Reset visual selections
-      priceOptions.forEach((opt) => opt.classList.remove("selected"));
-      document
-        .getElementById("standardTicket")
-        .closest(".price-option")
-        .classList.add("selected");
     });
 
     // Initialize first option as selected
