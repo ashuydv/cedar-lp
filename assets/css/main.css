@@ -8509,7 +8509,8 @@ section,
     font-size: 1.3rem;
   }
 
-  section, .section {
+  section,
+  .section {
     padding: 40px 0px;
   }
 }
