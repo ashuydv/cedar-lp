@@ -221,8 +221,8 @@
         <div class="container">
           <div class="registration-container">
             <div class="form-header">
-              <h2 style="color: white; text-align: left;">
-                Festive Night
+              <h2 style="color: white; text-align: left">
+                Cedar's Festive Night
               </h2>
             </div>
 
@@ -230,8 +230,6 @@
               <form id="registrationForm">
                 <!-- Personal Information Section -->
                 <div class="form-section">
-                  <h4 class="section-title">Personal Information</h4>
-
                   <div class="row mb-3">
                     <div class="col-md-6">
                       <label for="name" class="form-label">Full Name *</label>
@@ -286,106 +284,6 @@
                       />
                     </div>
                   </div>
-                </div>
-
-                <!-- Ticket Options Section -->
-                <div class="form-section">
-                  <h4 class="section-title">Choose Your Experience</h4>
-                  <p class="form-text mb-4">
-                    Select the ticket type that best suits your celebration
-                    style
-                  </p>
-
-                  <div class="price-option">
-                    <label class="d-flex align-items-start">
-                      <input
-                        type="radio"
-                        name="ticketType"
-                        value="standard"
-                        checked
-                      />
-                      <div class="option-content">
-                        <div class="option-details">
-                          <h4>Standard Admission</h4>
-                          <p>
-                            Perfect for music lovers who want to enjoy the full
-                            experience
-                          </p>
-                          <div class="option-features">
-                            <span class="feature-badge">Concert Access</span>
-                            <span class="feature-badge">Food Stalls</span>
-                            <span class="feature-badge">Flea Market</span>
-                            <span class="feature-badge">General Seating</span>
-                          </div>
-                        </div>
-                        <div class="price-display">
-                          <div class="price-amount">₹999</div>
-                          <div class="price-period">per person</div>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-
-                  <div class="price-option">
-                    <label class="d-flex align-items-start">
-                      <input type="radio" name="ticketType" value="vip" />
-                      <div class="option-content">
-                        <div class="option-details">
-                          <h4>VIP Experience</h4>
-                          <p>
-                            Enhanced experience with premium perks and exclusive
-                            access
-                          </p>
-                          <div class="option-features">
-                            <span class="feature-badge">Premium Seating</span>
-                            <span class="feature-badge">Complimentary F&B</span>
-                            <span class="feature-badge"
-                              >Exclusive Merchandise</span
-                            >
-                            <span class="feature-badge"
-                              >Artist Meet & Greet</span
-                            >
-                          </div>
-                        </div>
-                        <div class="price-display">
-                          <div class="price-amount">₹1,999</div>
-                          <div class="price-period">per person</div>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-
-                  <div class="price-option">
-                    <label class="d-flex align-items-start">
-                      <input type="radio" name="ticketType" value="family" />
-                      <div class="option-content">
-                        <div class="option-details">
-                          <h4>Family Pack (4 persons)</h4>
-                          <p>
-                            Special family offer - bring your loved ones and
-                            save more!
-                          </p>
-                          <div class="option-features">
-                            <span class="feature-badge"
-                              >4 Standard Tickets</span
-                            >
-                            <span class="feature-badge">Family Seating</span>
-                            <span class="feature-badge">Kids Activities</span>
-                            <span class="feature-badge">₹500 Savings</span>
-                          </div>
-                        </div>
-                        <div class="price-display">
-                          <div class="price-amount">₹3,499</div>
-                          <div class="price-period">for 4 people</div>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-
-                <!-- Address Section -->
-                <div class="form-section">
-                  <h4 class="section-title">Contact Information</h4>
 
                   <div class="mb-3">
                     <label for="address" class="form-label"
@@ -403,17 +301,7 @@
                     <div class="character-count" id="addressCount">
                       0/7 characters (minimum 7 required)
                     </div>
-                    <div class="form-text">
-                      Please provide your complete address for verification and
-                      event updates
-                    </div>
                   </div>
-                </div>
-
-                <!-- Additional Information -->
-                <div class="form-section">
-                  <h4 class="section-title">Additional Information</h4>
-
                   <div class="mb-3">
                     <label class="form-label"
                       >Are you interested in Home Buying at Navin's
@@ -426,6 +314,7 @@
                         name="homeBuyingInterest"
                         id="interestedYes"
                         value="yes"
+                        checked
                       />
                       <label class="form-check-label" for="interestedYes">
                         Yes, I'm interested in learning more about Navin's CEDAR
@@ -438,7 +327,6 @@
                         name="homeBuyingInterest"
                         id="interestedNo"
                         value="no"
-                        checked
                       />
                       <label class="form-check-label" for="interestedNo">
                         No, I'm here just for the event
@@ -460,9 +348,7 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary">
-                  Complete Registration & Pay
-                </button>
+                <button type="submit" class="btn btn-primary">Register</button>
               </form>
             </div>
           </div>
@@ -558,13 +444,13 @@
       <!-- Featured Artists Section -->
       <section id="featured-artists" class="featured-speakers section">
         <!-- Section Title -->
-        <div class="container section-title">
+        <!-- <div class="container section-title">
           <h2>Featured Artists</h2>
           <p>
             Meet the incredible performers who will make this night
             unforgettable
           </p>
-        </div>
+        </div> -->
         <!-- End Section Title -->
 
         <div class="container">
@@ -1157,7 +1043,12 @@
             <!-- Location Details -->
             <div class="col-lg-12">
               <div class="location-content">
-                <h2>Get Direction To The Event Location</h2>
+                <div
+                  class="container section-title"
+                  style="width: 100%; max-width: 80%"
+                >
+                  <h2>Get Direction To The Event Location</h2>
+                </div>
 
                 <div class="location-info">
                   <div class="location-item">
@@ -1259,12 +1150,12 @@
         <div class="container">
           <div class="row align-items-center gy-4">
             <div class="col-lg-12">
-              <h2
-                class="mb-4"
-                style="font-size: 2.2rem; color: #b91c1c; margin-bottom: 30px"
+              <div
+                class="container section-title"
+                style="width: 100%; max-width: 80%"
               >
-                WHY CHOOSE A NAVIN'S HOME
-              </h2>
+                <h2>WHY CHOOSE A NAVIN'S HOME</h2>
+              </div>
             </div>
             <!-- Image -->
             <div class="col-lg-5">
