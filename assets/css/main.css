@@ -5801,7 +5801,7 @@ section,
 .location .location-item {
   display: flex;
   min-height: 120px;
-  min-width: 640px;
+  min-width: 50%;
   align-items: flex-start;
   gap: 20px;
   padding: 20px;
@@ -6118,6 +6118,15 @@ section,
   .why-choose .features-grid {
     gap: 20px;
   }
+
+  .location .location-item {
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .location .location-info {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 768px) {
@@ -6155,6 +6164,15 @@ section,
   .why-choose .feature-icon {
     width: 50px;
     height: 50px;
+  }
+
+  .location .location-item {
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .location .location-info {
+    flex-direction: column;
   }
 }
 
@@ -6689,13 +6707,24 @@ section,
   height: 100vh;
   object-fit: cover;
   border-radius: 1rem;
-  padding: 0.5rem;
+  padding: 0rem;
 }
 
 @media (max-width: 576px) {
   #hero .background-overlay img {
     border-radius: 0.75rem;
     padding: 0.25rem;
+    margin-top: 8rem;
+  }
+
+  #hero .background-overlay picture,
+  #hero .background-overlay img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 1rem;
+    padding: 0rem;
   }
 }
 /*--------------------------------------------------------------
@@ -7193,17 +7222,11 @@ section,
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 32px;
   color: #666;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   z-index: 10;
-}
-
-.modal-close-btn:hover {
-  background: #f5f5f5;
-  color: #333;
-  transform: rotate(90deg);
 }
 
 /*--------------------------------------------------------------
@@ -7412,7 +7435,7 @@ section,
     right: -12px;
     width: 35px;
     height: 35px;
-    font-size: 20px;
+    font-size: 32px;
   }
 }
 
@@ -8525,8 +8548,13 @@ section,
   border-radius: 20px;
   padding: 40px;
   margin: 40px 0;
-  box-shadow: 0 8px 30px color-mix(in srgb, var(--default-color), transparent 90%);
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 95%);
+}
+
+@media (max-width: 576px) {
+  .terms-conditions-section {
+    padding: 0px;
+    margin: 0px;
+  }
 }
 
 .terms-header {
@@ -8666,11 +8694,6 @@ section,
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .terms-conditions-section {
-    padding: 25px 20px;
-    margin: 30px 0;
-  }
-
   .terms-title {
     font-size: 1.6rem;
   }
@@ -8703,6 +8726,11 @@ section,
     right: 20px;
     font-size: 1.2rem;
   }
+
+  .terms-conditions-section {
+    padding: 0px;
+    margin: 0px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -8733,9 +8761,9 @@ section,
 }
 
 /* Hover Effects */
-.terms-conditions-section:hover {
+/* .terms-conditions-section:hover {
   box-shadow: 0 12px 40px color-mix(in srgb, var(--default-color), transparent 85%);
-}
+} */
 
 .terms-box:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 92%);
