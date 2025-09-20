@@ -8,8 +8,8 @@
     <meta name="keywords" content="" />
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon" />
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <!-- <link href="assets/img/favicon.png" rel="icon" /> -->
+    <!-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" /> -->
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -36,9 +36,63 @@
 
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-N53WQV2D");
+    </script>
+
+    <!-- Phone Validation Styles -->
+    <style>
+      .phone-validation {
+        font-size: 12px;
+        margin-top: 5px;
+      }
+      .phone-validation.valid {
+        color: #28a745;
+      }
+      .phone-validation.invalid {
+        color: #dc3545;
+      }
+      .phone-input-wrapper {
+        position: relative;
+      }
+      .phone-input.valid {
+        border-color: #28a745 !important;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+      }
+      .phone-input.invalid {
+        border-color: #dc3545 !important;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+      }
+      .phone-format-help {
+        font-size: 11px;
+        color: #6c757d;
+        margin-top: 3px;
+      }
+    </style>
   </head>
 
   <body class="index-page">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-N53WQV2D"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <main class="main">
       <header id="header" class="header d-flex align-items-center fixed-top">
         <div
@@ -49,7 +103,7 @@
             <img
               src="./assets/img/logo.jpg"
               alt="Cedar Festive Logo"
-              width="50"
+              width="60"
             />
 
             <!-- <h1 class="sitename">Cedar Festive</h1> -->
@@ -272,14 +326,21 @@
                       <label for="popup-phone" class="form-label"
                         >Contact Number *</label
                       >
-                      <input
-                        type="tel"
-                        class="form-control"
-                        id="popup-phone"
-                        name="phone"
-                        required
-                        placeholder="+91 1234567890"
-                      />
+                      <div class="phone-input-wrapper">
+                        <input
+                          type="tel"
+                          class="form-control phone-input"
+                          id="popup-phone"
+                          name="phone"
+                          required
+                          placeholder="+91 9876543210"
+                          maxlength="15"
+                        />
+                        <div
+                          class="phone-validation"
+                          id="popup-phone-validation"
+                        ></div>
+                      </div>
                     </div>
                   </div>
 
@@ -601,13 +662,21 @@
               </div>
 
               <div class="form-group">
-                <input
-                  type="tel"
-                  id="phone"
-                  name="mobile"
-                  placeholder="Your Phone Number"
-                  required
-                />
+                <div class="phone-input-wrapper">
+                  <input
+                    type="tel"
+                    class="phone-input"
+                    id="phone"
+                    name="mobile"
+                    placeholder="Your Phone Number"
+                    required
+                    maxlength="15"
+                  />
+                  <div class="phone-validation" id="phone-validation"></div>
+                  <div class="phone-format-help">
+                    Format: +91 followed by 10 digits
+                  </div>
+                </div>
               </div>
 
               <!-- Hidden Tracking Fields -->
@@ -886,7 +955,7 @@
             <h2>Upcoming Projects</h2>
             <p>
               Live Life Singapore Style with thoughtfully designed 3 BHLK homes
-              at Navin's Cedar Tower
+              at Navin's Cedar Tower
             </p>
           </div>
           <!-- End Section Title -->
@@ -948,9 +1017,9 @@
                       </div>
                       <div class="offer-items">
                         <ul>
-                          <li>One 65” Branded TV</li>
+                          <li>One 65" Branded TV</li>
                           <li>JBL 5.1 Home Theater</li>
-                          <li>Two Recliner Couches</li>
+                          <li>Two Recliner Couches</li>
                         </ul>
                       </div>
                     </div>
@@ -1242,7 +1311,7 @@
                       <i class="bi bi-geo-alt"></i>
                     </div>
                     <div class="location-details">
-                      <h4>Navin’s Starwood Towers – Medavakkam</h4>
+                      <h4>Navin's Starwood Towers – Medavakkam</h4>
                       <p>Chennai</p>
                     </div>
                   </div>
@@ -1513,13 +1582,23 @@
                 </div>
 
                 <div class="form-group">
-                  <input
-                    type="tel"
-                    class="form-control"
-                    name="mobile"
-                    placeholder="Mobile"
-                    required
-                  />
+                  <div class="phone-input-wrapper">
+                    <input
+                      type="tel"
+                      class="form-control phone-input"
+                      name="mobile"
+                      placeholder="Mobile"
+                      required
+                      maxlength="15"
+                    />
+                    <div
+                      class="phone-validation"
+                      id="contact-phone-validation"
+                    ></div>
+                    <div class="phone-format-help">
+                      Format: +91 followed by 10 digits
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -1582,6 +1661,170 @@
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <!-- Phone Validation JavaScript -->
+    <script>
+      // Enhanced Phone Validation Function
+      function validatePhoneNumber(phoneInput, validationDiv) {
+        const phoneValue = phoneInput.value.trim();
+        let isValid = false;
+        let message = "";
+        let formattedNumber = "";
+
+        // Remove all non-digit characters except +
+        let cleanedNumber = phoneValue.replace(/[^\d+]/g, "");
+
+        // If number starts with +91, remove it for validation
+        if (cleanedNumber.startsWith("+91")) {
+          cleanedNumber = cleanedNumber.substring(3);
+        } else if (
+          cleanedNumber.startsWith("91") &&
+          cleanedNumber.length === 12
+        ) {
+          cleanedNumber = cleanedNumber.substring(2);
+        } else if (
+          cleanedNumber.startsWith("0") &&
+          cleanedNumber.length === 11
+        ) {
+          cleanedNumber = cleanedNumber.substring(1);
+        }
+
+        // Check if it's a valid 10-digit
+        const mobileRegex = /^[6-9]\d{9}$/;
+
+        if (cleanedNumber.length === 0) {
+          message = "Phone number is required";
+          phoneInput.classList.remove("valid", "invalid");
+        } else if (cleanedNumber.length < 10) {
+          message = "Phone number must be at least 10 digits";
+          phoneInput.classList.remove("valid");
+          phoneInput.classList.add("invalid");
+        } else if (cleanedNumber.length > 10) {
+          message =
+            "Phone number cannot be more than 10 digits (excluding country code)";
+          phoneInput.classList.remove("valid");
+          phoneInput.classList.add("invalid");
+        } else if (!mobileRegex.test(cleanedNumber)) {
+          message = "Invalid. Must start with 6, 7, 8, or 9";
+          phoneInput.classList.remove("valid");
+          phoneInput.classList.add("invalid");
+        } else {
+          isValid = true;
+          formattedNumber = `+91 ${cleanedNumber}`;
+          message = `✓ Valid: ${formattedNumber}`;
+          phoneInput.classList.remove("invalid");
+          phoneInput.classList.add("valid");
+        }
+
+        // Update validation message
+        if (validationDiv) {
+          validationDiv.textContent = message;
+          validationDiv.className = `phone-validation ${
+            isValid ? "valid" : "invalid"
+          }`;
+        }
+
+        return {
+          isValid,
+          formattedNumber: isValid ? formattedNumber : "",
+          cleanedNumber,
+          message,
+        };
+      }
+
+      // Real-time phone validation for all phone inputs
+      function initPhoneValidation() {
+        const phoneInputs = document.querySelectorAll(
+          '.phone-input, input[type="tel"]'
+        );
+
+        phoneInputs.forEach((input) => {
+          const wrapper =
+            input.closest(".phone-input-wrapper") || input.parentElement;
+          let validationDiv = wrapper.querySelector(".phone-validation");
+
+          // Create validation div if it doesn't exist
+          if (!validationDiv) {
+            validationDiv = document.createElement("div");
+            validationDiv.className = "phone-validation";
+            input.insertAdjacentElement("afterend", validationDiv);
+          }
+
+          // Format input on paste
+          input.addEventListener("paste", function (e) {
+            setTimeout(() => {
+              let pastedValue = this.value;
+              // Auto-format pasted numbers
+              if (
+                !pastedValue.startsWith("+91") &&
+                /^\d{10}$/.test(pastedValue.replace(/\D/g, ""))
+              ) {
+                this.value = `+91 ${pastedValue.replace(/\D/g, "")}`;
+              }
+              validatePhoneNumber(this, validationDiv);
+            }, 10);
+          });
+
+          // Validate on input
+          input.addEventListener("input", function () {
+            let value = this.value;
+
+            // Auto-format while typing
+            if (
+              value.length === 10 &&
+              /^\d{10}$/.test(value) &&
+              !value.startsWith("+91")
+            ) {
+              this.value = `+91 ${value}`;
+            }
+
+            validatePhoneNumber(this, validationDiv);
+          });
+
+          // Validate on blur (when user leaves the field)
+          input.addEventListener("blur", function () {
+            const result = validatePhoneNumber(this, validationDiv);
+            if (result.isValid && result.formattedNumber) {
+              this.value = result.formattedNumber;
+            }
+          });
+
+          // Validate on focus (when user enters the field)
+          input.addEventListener("focus", function () {
+            validatePhoneNumber(this, validationDiv);
+          });
+
+          // Prevent invalid characters
+          input.addEventListener("keypress", function (e) {
+            const char = String.fromCharCode(e.which);
+            const currentValue = this.value;
+
+            // Allow numbers, + at the beginning, spaces, and control keys
+            if (
+              !/[\d\s+]/.test(char) &&
+              e.which !== 8 &&
+              e.which !== 9 &&
+              e.which !== 46
+            ) {
+              e.preventDefault();
+            }
+
+            // Allow only one + at the beginning
+            if (
+              char === "+" &&
+              (currentValue.includes("+") || this.selectionStart !== 0)
+            ) {
+              e.preventDefault();
+            }
+          });
+        });
+      }
+
+      // Initialize phone validation when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        initPhoneValidation();
+      });
+    </script>
 
     <script>
       // Event Countdown Timer
@@ -1805,7 +2048,7 @@
           }
         }
 
-        // Form submission
+        // Enhanced form submission with phone validation
         if (form) {
           form.addEventListener("submit", function (e) {
             e.preventDefault();
@@ -1854,10 +2097,10 @@
               return;
             }
 
-            // Phone validation (basic)
-            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-            if (!phoneRegex.test(phone.value.trim())) {
-              alert("Please enter a valid phone number.");
+            // Enhanced phone validation
+            const phoneValidation = validatePhoneNumber(phone, null);
+            if (!phoneValidation.isValid) {
+              alert(`Phone validation failed: ${phoneValidation.message}`);
               phone.focus();
               return;
             }
@@ -1869,6 +2112,9 @@
 
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
+
+            // Use the formatted phone number
+            data.phone = phoneValidation.formattedNumber;
           });
         }
       });
@@ -2169,7 +2415,7 @@
           }
         }
 
-        // Enhanced form submission
+        // Enhanced form submission with comprehensive phone validation
         if (form) {
           form.addEventListener("submit", function (e) {
             e.preventDefault();
@@ -2233,12 +2479,12 @@
               );
             }
 
-            // Phone validation
-            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-            if (!phoneRegex.test(phone.value.trim())) {
+            // Enhanced phone validation
+            const phoneValidation = validatePhoneNumber(phone, null);
+            if (!phoneValidation.isValid) {
               return validateField(
                 phone,
-                "Please enter a valid phone number with at least 10 digits."
+                `Phone validation failed: ${phoneValidation.message}`
               );
             }
 
@@ -2273,6 +2519,8 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
 
+            // Use the validated and formatted phone number
+            data.phone = phoneValidation.formattedNumber;
             data.submissionDate = new Date().toLocaleString("en-IN", {
               timeZone: "Asia/Kolkata",
             });
@@ -2282,14 +2530,13 @@
             saveToGoogleSheets(data)
               .then((response) => {
                 createNotification(
-                  "Registration successful! We'll contact you soon with event details.",
+                  "Registration successful! Redirecting to thank you page...",
                   "success",
-                  6000
+                  3000
                 );
 
-                setTimeout(() => {
-                  closeModal();
-                }, 2000);
+                // Redirect to thank you page after 2 seconds
+                window.location.href = "thank-you.html";
               })
               .catch((error) => {
                 console.error("Error saving data:", error);
@@ -2321,7 +2568,7 @@
     </script>
 
     <script>
-      // Contact Form Handler
+      // Contact Form Handler with enhanced phone validation
       document.addEventListener("DOMContentLoaded", function () {
         const contactForm = document.getElementById("contactForm");
 
@@ -2388,15 +2635,18 @@
               return;
             }
 
-            // Phone validation
-            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-            if (!phoneRegex.test(mobile)) {
+            // Enhanced phone validation for contact form
+            const phoneInput = contactForm.querySelector(
+              'input[name="mobile"]'
+            );
+            const phoneValidation = validatePhoneNumber(phoneInput, null);
+            if (!phoneValidation.isValid) {
               createNotification(
-                "Please enter a valid mobile number.",
+                `Phone validation failed: ${phoneValidation.message}`,
                 "error",
                 4000
               );
-              contactForm.querySelector('input[name="mobile"]').focus();
+              phoneInput.focus();
               return;
             }
 
@@ -2406,6 +2656,9 @@
             submitBtn.innerHTML = "Submitting...";
             submitBtn.style.opacity = "0.7";
             submitBtn.disabled = true;
+
+            // Use the validated and formatted phone number
+            data.mobile = phoneValidation.formattedNumber;
 
             // Send to Google Sheets
             saveToGoogleSheets(data)
