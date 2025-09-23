@@ -1825,6 +1825,243 @@
       });
     </script>
 
+    <!-- Channel and Placement Tracking with Referrer Detection -->
+    <script>
+      // Enhanced Channel and Placement Tracking with Referrer Detection
+      function detectSourceFromReferrer() {
+        const referrer = document.referrer;
+
+        if (!referrer) {
+          return { source: "direct", medium: "none", channel: "Direct" };
+        }
+
+        try {
+          const referrerUrl = new URL(referrer);
+          const hostname = referrerUrl.hostname.toLowerCase();
+
+          // Social Media Sources
+          if (
+            hostname.includes("facebook.com") ||
+            hostname.includes("fb.com")
+          ) {
+            return {
+              source: "facebook",
+              medium: "social",
+              channel: "Facebook",
+            };
+          } else if (hostname.includes("instagram.com")) {
+            return {
+              source: "instagram",
+              medium: "social",
+              channel: "Facebook",
+            };
+          } else if (
+            hostname.includes("twitter.com") ||
+            hostname.includes("x.com")
+          ) {
+            return { source: "twitter", medium: "social", channel: "Social" };
+          } else if (hostname.includes("linkedin.com")) {
+            return { source: "linkedin", medium: "social", channel: "Social" };
+          }
+
+          // Taboola and Content Networks
+          else if (
+            hostname.includes("taboola.com") ||
+            hostname.includes("taboola")
+          ) {
+            return { source: "taboola", medium: "display", channel: "Taboola" };
+          } else if (hostname.includes("outbrain.com")) {
+            return {
+              source: "outbrain",
+              medium: "display",
+              channel: "Content Network",
+            };
+          }
+
+          // Search Engines
+          else if (
+            hostname.includes("google.com") ||
+            hostname.includes("google.co.in")
+          ) {
+            return {
+              source: "google",
+              medium: "organic",
+              channel: "Organic Search",
+            };
+          } else if (hostname.includes("bing.com")) {
+            return {
+              source: "bing",
+              medium: "organic",
+              channel: "Organic Search",
+            };
+          } else if (hostname.includes("yahoo.com")) {
+            return {
+              source: "yahoo",
+              medium: "organic",
+              channel: "Organic Search",
+            };
+          }
+
+          // Email
+          else if (
+            hostname.includes("mail.") ||
+            hostname.includes("email") ||
+            hostname.includes("outlook") ||
+            hostname.includes("gmail")
+          ) {
+            return { source: "email", medium: "email", channel: "Email" };
+          }
+
+          // Other websites (referral traffic)
+          else {
+            return {
+              source: hostname.replace("www.", ""),
+              medium: "referral",
+              channel: "Referral",
+            };
+          }
+        } catch (e) {
+          return { source: "direct", medium: "none", channel: "Direct" };
+        }
+      }
+
+      // Campaign to Channel Mapping based on your table
+      function getCampaignChannelMapping(campaign) {
+        const mapping = {
+          Desktop_Versio: { channel: "Taboola", placement: "Digital" },
+          ConversionAds: { channel: "Facebook", placement: "FacebookCamp" },
+          adwords_Search: { channel: "AdWords", placement: "Digital" },
+          facebook_ads: { channel: "Facebook", placement: "FacebookCamp" },
+          taboola_ads: { channel: "Taboola", placement: "Digital" },
+        };
+
+        return mapping[campaign] || { channel: "Organic", placement: "Direct" };
+      }
+
+      // Keyword mapping for specific campaigns
+      function getCampaignKeyword(campaign, utmTerm) {
+        if (campaign === "adwords_Search" && !utmTerm) {
+          return "Navin's medavakkam";
+        }
+        return utmTerm || "{Keyword}";
+      }
+
+      // Main tracking function with referrer support
+      function setEnhancedTrackingWithReferrer(interactionSource = "") {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Get UTM parameters
+        const utmSource = urlParams.get("utm_source");
+        const utmCampaign = urlParams.get("utm_campaign");
+        const utmMedium = urlParams.get("utm_medium");
+        const utmTerm = urlParams.get("utm_term");
+        const utmContent = urlParams.get("utm_content");
+
+        // Detect source from referrer if no UTM parameters
+        const referrerData = detectSourceFromReferrer();
+
+        // Determine final values (UTM parameters take priority)
+        let source = utmSource || referrerData.source;
+        let medium = utmMedium || referrerData.medium;
+        let campaign = utmCampaign || "cedar_festive_night";
+
+        // Get channel and placement based on campaign
+        const campaignMapping = getCampaignChannelMapping(campaign);
+
+        // If no UTM campaign but we have referrer data, try to infer campaign
+        if (!utmCampaign && referrerData.channel !== "Organic") {
+          // Map referrer channel to likely campaign
+          const channelToCampaign = {
+            Facebook: "ConversionAds",
+            Taboola: "Desktop_Versio",
+            AdWords: "adwords_Search",
+          };
+
+          if (channelToCampaign[referrerData.channel]) {
+            campaign = channelToCampaign[referrerData.channel];
+            // Update mapping with inferred campaign
+            Object.assign(campaignMapping, getCampaignChannelMapping(campaign));
+          }
+        }
+
+        // Add interaction source to tracking
+        if (interactionSource) {
+          source = `${source}_${interactionSource}`;
+        }
+
+        // Set final tracking data
+        const trackingData = {
+          source: source,
+          campaign: campaign,
+          channel: utmSource
+            ? campaignMapping.channel
+            : referrerData.channel || campaignMapping.channel,
+          keyword: getCampaignKeyword(campaign, utmTerm),
+          placement: utmContent || campaignMapping.placement,
+          medium: medium,
+          device: /Mobi|Android/i.test(navigator.userAgent)
+            ? "mobile"
+            : "desktop",
+          gclid: urlParams.get("gclid") || "",
+          referrer: document.referrer || "direct",
+        };
+
+        applyTrackingData(trackingData);
+
+        return trackingData;
+      }
+
+      // Apply tracking data to form fields
+      function applyTrackingData(trackingData) {
+        const fieldMapping = [
+          { id: "popup-source", value: trackingData.source },
+          { id: "source", value: trackingData.source },
+          { id: "popup-campaign", value: trackingData.campaign },
+          { id: "campaign", value: trackingData.campaign },
+          { id: "popup-channel", value: trackingData.channel },
+          { id: "channel", value: trackingData.channel },
+          { id: "popup-keyword", value: trackingData.keyword },
+          { id: "keyword", value: trackingData.keyword },
+          { id: "popup-placement", value: trackingData.placement },
+          { id: "placement", value: trackingData.placement },
+          { id: "popup-medium", value: trackingData.medium },
+          { id: "medium", value: trackingData.medium },
+          { id: "popup-device", value: trackingData.device },
+          { id: "device", value: trackingData.device },
+          { id: "popup-gclid", value: trackingData.gclid },
+          { id: "gclid", value: trackingData.gclid },
+        ];
+
+        fieldMapping.forEach((mapping) => {
+          const element = document.getElementById(mapping.id);
+          if (element) {
+            element.value = mapping.value;
+          }
+        });
+
+        // Set timestamp
+        const now = new Date().toISOString();
+        ["popup-timestamp", "timestamp"].forEach((fieldId) => {
+          const field = document.getElementById(fieldId);
+          if (field) field.value = now;
+        });
+      }
+
+      // Initialize tracking when page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set initial tracking
+        const initialTracking = setEnhancedTrackingWithReferrer();
+
+        console.log("Initial traffic source detected:", {
+          referrer: document.referrer,
+          source: initialTracking.source,
+          medium: initialTracking.medium,
+          channel: initialTracking.channel,
+          campaign: initialTracking.campaign,
+        });
+      });
+    </script>
+
     <script>
       // Event Countdown Timer
       function initEventCountdown() {
@@ -1890,233 +2127,6 @@
 
       // Initialize countdown when page loads
       document.addEventListener("DOMContentLoaded", initEventCountdown);
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const enquireBtn = document.getElementById("enquire-btn");
-        const modal = document.getElementById("enquiry-modal");
-        const modalClose = document.getElementById("modal-close");
-        const form = document.getElementById("event-registration");
-        const submitBtn = form.querySelector("button[type='submit']");
-        const addressTextarea = document.getElementById("popup-address");
-        const addressCount = document.getElementById("popup-addressCount");
-
-        // Track if modal has been shown to avoid showing multiple times
-        let modalShown = false;
-
-        // Auto-open modal after 5 seconds
-        setTimeout(() => {
-          if (!modalShown) {
-            openModal("auto_popup_5sec");
-          }
-        }, 5000);
-
-        // Character counter for address field
-        if (addressTextarea && addressCount) {
-          addressTextarea.addEventListener("input", function () {
-            const length = this.value.length;
-            addressCount.textContent = `${length}/7 characters (minimum 7 required)`;
-
-            if (length < 7) {
-              addressCount.classList.add("invalid");
-              addressCount.style.color = "#dc3545";
-            } else {
-              addressCount.classList.remove("invalid");
-              addressCount.style.color = "#6c757d";
-            }
-          });
-        }
-
-        // Open modal - Handle multiple enquire buttons
-        function openModal(source = "enquire_btn") {
-          if (modalShown) return; // Prevent multiple opens
-
-          modalShown = true;
-          modal.classList.add("active");
-          document.body.style.overflow = "hidden";
-
-          // Set tracking information with source
-          setTrackingInfo(source);
-
-          setTimeout(() => {
-            const nameField = document.getElementById("popup-name");
-            if (nameField) {
-              nameField.focus();
-            }
-          }, 300);
-        }
-
-        // Main enquire button
-        if (enquireBtn) {
-          enquireBtn.addEventListener("click", function (e) {
-            e.preventDefault();
-            openModal("main_enquire_btn");
-          });
-        }
-
-        // Sticky footer enquire button (updated selector)
-        const stickyEnquireBtn = document.querySelector(
-          "#sticky-button-container .btn-enquire"
-        );
-        if (stickyEnquireBtn) {
-          stickyEnquireBtn.addEventListener("click", function (e) {
-            e.preventDefault();
-            openModal("sticky_enquire_btn");
-          });
-        }
-
-        // Book tickets buttons
-        const bookTicketsBtns = document.querySelectorAll(
-          "#book-tickets-btn, #book-tickets-btn-2"
-        );
-        bookTicketsBtns.forEach((btn, index) => {
-          if (btn) {
-            btn.addEventListener("click", function (e) {
-              e.preventDefault();
-              openModal(`book_tickets_btn_${index + 1}`);
-            });
-          }
-        });
-
-        // Close modal
-        function closeModal() {
-          modal.classList.remove("active");
-          document.body.style.overflow = "";
-          form.reset();
-
-          if (submitBtn) {
-            submitBtn.classList.remove("loading");
-            submitBtn.innerHTML = `REGISTER NOW <i class="bi bi-arrow-right-circle ms-2"></i>`;
-          }
-
-          // Reset address counter
-          if (addressCount) {
-            addressCount.textContent = "0/7 characters (minimum 7 required)";
-            addressCount.classList.remove("invalid");
-            addressCount.style.color = "#6c757d";
-          }
-
-          // Allow modal to be shown again after closing (for manual triggers)
-          setTimeout(() => {
-            modalShown = false;
-          }, 1000);
-        }
-
-        if (modalClose) {
-          modalClose.addEventListener("click", closeModal);
-        }
-
-        // Close on overlay click
-        modal.addEventListener("click", function (e) {
-          if (e.target === modal) {
-            closeModal();
-          }
-        });
-
-        // Close on Escape key
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && modal.classList.contains("active")) {
-            closeModal();
-          }
-        });
-
-        // Set tracking information - Updated to accept source parameter
-        function setTrackingInfo(source = "enquire_btn") {
-          const now = new Date();
-          const timestampField = document.getElementById("popup-timestamp");
-          const sourceField = document.getElementById("popup-source");
-          const campaignField = document.getElementById("popup-campaign");
-          const channelField = document.getElementById("popup-channel");
-          const mediumField = document.getElementById("popup-medium");
-          const deviceField = document.getElementById("popup-device");
-          const gclidField = document.getElementById("popup-gclid");
-
-          if (timestampField) timestampField.value = now.toISOString();
-          if (sourceField) sourceField.value = source;
-          if (campaignField) campaignField.value = "cedar_festive_night";
-          if (channelField) channelField.value = "website";
-          if (mediumField) mediumField.value = "popup";
-          if (deviceField)
-            deviceField.value = /Mobi|Android/i.test(navigator.userAgent)
-              ? "mobile"
-              : "desktop";
-
-          // Get URL parameters if available
-          const urlParams = new URLSearchParams(window.location.search);
-          if (urlParams.get("gclid") && gclidField) {
-            gclidField.value = urlParams.get("gclid");
-          }
-        }
-
-        // Enhanced form submission with phone validation
-        if (form) {
-          form.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            // Validate required fields
-            const name = document.getElementById("popup-name");
-            const email = document.getElementById("popup-email");
-            const phone = document.getElementById("popup-phone");
-            const address = document.getElementById("popup-address");
-
-            if (!name || !name.value.trim()) {
-              alert("Please enter your full name.");
-              if (name) name.focus();
-              return;
-            }
-
-            if (!email || !email.value.trim()) {
-              alert("Please enter your email address.");
-              if (email) email.focus();
-              return;
-            }
-
-            if (!phone || !phone.value.trim()) {
-              alert("Please enter your contact number.");
-              if (phone) phone.focus();
-              return;
-            }
-
-            if (!address || !address.value.trim()) {
-              alert("Please enter your residential address.");
-              if (address) address.focus();
-              return;
-            }
-
-            if (address.value.trim().length < 7) {
-              alert("Please enter a complete address (minimum 7 characters).");
-              address.focus();
-              return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email.value.trim())) {
-              alert("Please enter a valid email address.");
-              email.focus();
-              return;
-            }
-
-            // Enhanced phone validation
-            const phoneValidation = validatePhoneNumber(phone, null);
-            if (!phoneValidation.isValid) {
-              alert(`Phone validation failed: ${phoneValidation.message}`);
-              phone.focus();
-              return;
-            }
-
-            if (submitBtn) {
-              submitBtn.classList.add("loading");
-              submitBtn.innerHTML = "REGISTERING...";
-            }
-
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-
-            // Use the formatted phone number
-            data.phone = phoneValidation.formattedNumber;
-          });
-        }
-      });
     </script>
 
     <script>
@@ -2222,8 +2232,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Registration form handler (your existing code)
-        const enquireBtn = document.getElementById("enquire-btn");
+        // Registration form handler
         const modal = document.getElementById("enquiry-modal");
         const modalClose = document.getElementById("modal-close");
         const form = document.getElementById("event-registration");
@@ -2288,15 +2297,16 @@
           return false;
         }
 
-        // Open modal
-        function openModal(source = "enquire_btn") {
+        // Open modal with enhanced tracking
+        function openModal(interactionSource = "enquire_btn") {
           if (modalShown || !modal) return;
 
           modalShown = true;
           modal.classList.add("active");
           document.body.style.overflow = "hidden";
 
-          setTrackingInfo(source);
+          // Set enhanced tracking with referrer detection
+          setEnhancedTrackingWithReferrer(interactionSource);
 
           setTimeout(() => {
             const nameField = document.getElementById("popup-name");
@@ -2307,6 +2317,7 @@
         }
 
         // Event listeners for buttons
+        const enquireBtn = document.getElementById("enquire-btn");
         if (enquireBtn) {
           enquireBtn.addEventListener("click", function (e) {
             e.preventDefault();
@@ -2386,33 +2397,6 @@
             closeModal();
           }
         });
-
-        // Set tracking information
-        function setTrackingInfo(source = "enquire_btn") {
-          const now = new Date();
-          const timestampField = document.getElementById("popup-timestamp");
-          const sourceField = document.getElementById("popup-source");
-          const campaignField = document.getElementById("popup-campaign");
-          const channelField = document.getElementById("popup-channel");
-          const mediumField = document.getElementById("popup-medium");
-          const deviceField = document.getElementById("popup-device");
-          const gclidField = document.getElementById("popup-gclid");
-
-          if (timestampField) timestampField.value = now.toISOString();
-          if (sourceField) sourceField.value = source;
-          if (campaignField) campaignField.value = "cedar_festive_night";
-          if (channelField) channelField.value = "website";
-          if (mediumField) mediumField.value = "popup";
-          if (deviceField)
-            deviceField.value = /Mobi|Android/i.test(navigator.userAgent)
-              ? "mobile"
-              : "desktop";
-
-          const urlParams = new URLSearchParams(window.location.search);
-          if (urlParams.get("gclid") && gclidField) {
-            gclidField.value = urlParams.get("gclid");
-          }
-        }
 
         // Enhanced form submission with comprehensive phone validation
         if (form) {
@@ -2535,7 +2519,9 @@
                 );
 
                 // Redirect to thank you page after 2 seconds
-                window.location.href = "thank-you.html";
+                setTimeout(() => {
+                  window.location.href = "thank-you.html";
+                }, 2000);
               })
               .catch((error) => {
                 console.error("Error saving data:", error);
@@ -2567,11 +2553,14 @@
     </script>
 
     <script>
-      // Contact Form Handler with enhanced phone validation
+      // Contact Form Handler with enhanced phone validation and tracking
       document.addEventListener("DOMContentLoaded", function () {
         const contactForm = document.getElementById("contactForm");
 
         if (contactForm) {
+          // Set tracking for contact form
+          setEnhancedTrackingWithReferrer("contact_form");
+
           contactForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
@@ -2579,17 +2568,20 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
 
-            // Add tracking data
-            data.formType = "contact";
-            data.submissionDate = new Date().toLocaleString("en-IN", {
-              timeZone: "Asia/Kolkata",
+            // Add enhanced tracking data
+            const trackingData = setEnhancedTrackingWithReferrer(
+              "contact_form_submit"
+            );
+            Object.assign(data, {
+              formType: "contact",
+              submissionDate: new Date().toLocaleString("en-IN", {
+                timeZone: "Asia/Kolkata",
+              }),
+              source: trackingData.source,
+              campaign: trackingData.campaign,
+              channel: trackingData.channel,
+              userAgent: navigator.userAgent,
             });
-            data.source = "contact_form";
-            data.campaign = "cedar_contact";
-            data.device = /Mobi|Android/i.test(navigator.userAgent)
-              ? "mobile"
-              : "desktop";
-            data.userAgent = navigator.userAgent;
 
             // Validate required fields
             const name = data.name?.trim();
