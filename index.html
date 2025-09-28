@@ -2943,6 +2943,7 @@
           const cstmDevice = urlParams.get("cstm_ppc_device");
           const cstmCampaign = urlParams.get("cstm_ppc_campaign");
           const cstmChannel = urlParams.get("cstm_ppc_channel");
+          const cstmMedium = urlParams.get("cstm_ppc_medium"); // New medium parameter
           const srdParam = urlParams.get("srd");
 
           // Get click IDs for ads
@@ -2955,7 +2956,10 @@
           // Determine final values - prioritize custom params, then UTM, then referrer
           let source =
             cstmChannel?.toLowerCase() || utmSource || referrerData.source;
-          let medium = utmMedium || (cstmChannel ? "cpc" : referrerData.medium);
+          let medium =
+            cstmMedium ||
+            utmMedium ||
+            (cstmChannel ? "cpc" : referrerData.medium);
           let campaign = cstmCampaign || utmCampaign || "cedar_website_organic";
           let keyword = cstmKeyword || utmTerm || "{Keyword}";
           let placement = cstmPlacement || utmContent || referrerData.placement;
@@ -3023,6 +3027,7 @@
               cstm_device: cstmDevice || "",
               cstm_campaign: cstmCampaign || "",
               cstm_channel: cstmChannel || "",
+              cstm_medium: cstmMedium || "",
             },
           };
 
