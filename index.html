@@ -2680,5 +2680,551 @@
         }
       });
     </script>
+
+    <script>
+      // Enhanced Traffic Source Tracking for Navin's Cedar Website
+      // Add this script to your HTML pages to track Facebook, WhatsApp, and other traffic sources
+
+      (function () {
+        "use strict";
+
+        // Configuration
+        const GOOGLE_SCRIPT_URL =
+          "https://script.google.com/macros/s/AKfycbyJyiX5JJTSPZLb1BHatq7cL-s4A2kOW6TEyFPz-Xbw_labkSUm2jr9pmeApV5OPtOZ/exec";
+        const DEBUG = true; // Set to false in production
+
+        function log(message, data) {
+          if (DEBUG) {
+            console.log("[Traffic Tracker]", message, data);
+          }
+        }
+
+        // Enhanced referrer detection for Indian social media and platforms
+        function detectSourceFromReferrer() {
+          const referrer = document.referrer;
+
+          if (!referrer) {
+            return {
+              source: "direct",
+              medium: "none",
+              channel: "Direct",
+              placement: "Direct",
+            };
+          }
+
+          try {
+            const referrerUrl = new URL(referrer);
+            const hostname = referrerUrl.hostname.toLowerCase();
+
+            log("Referrer detected:", hostname);
+
+            // Facebook Family (including mobile versions)
+            if (
+              hostname.includes("facebook.com") ||
+              hostname.includes("fb.com") ||
+              hostname.includes("m.facebook.com") ||
+              hostname.includes("mobile.facebook.com") ||
+              hostname.includes("fb.me") ||
+              hostname.includes("fburl.com")
+            ) {
+              return {
+                source: "facebook",
+                medium: "social",
+                channel: "Facebook",
+                placement: "FacebookCamp",
+              };
+            }
+
+            // Instagram
+            else if (
+              hostname.includes("instagram.com") ||
+              hostname.includes("instagr.am")
+            ) {
+              return {
+                source: "instagram",
+                medium: "social",
+                channel: "Facebook",
+                placement: "FacebookCamp",
+              };
+            }
+
+            // WhatsApp (multiple detection methods)
+            else if (
+              hostname.includes("whatsapp.com") ||
+              hostname.includes("web.whatsapp.com") ||
+              hostname.includes("wa.me") ||
+              hostname.includes("api.whatsapp.com") ||
+              referrer.includes("whatsapp")
+            ) {
+              return {
+                source: "whatsapp",
+                medium: "social",
+                channel: "WhatsApp",
+                placement: "Social",
+              };
+            }
+
+            // YouTube
+            else if (
+              hostname.includes("youtube.com") ||
+              hostname.includes("youtu.be") ||
+              hostname.includes("m.youtube.com")
+            ) {
+              return {
+                source: "youtube",
+                medium: "video",
+                channel: "YouTube",
+                placement: "Video",
+              };
+            }
+
+            // Google Search (organic)
+            else if (
+              hostname.includes("google.com") ||
+              hostname.includes("google.co.in") ||
+              hostname.includes("google.") ||
+              hostname.includes("googleweblight.com")
+            ) {
+              return {
+                source: "google",
+                medium: "organic",
+                channel: "Organic Search",
+                placement: "Organic",
+              };
+            }
+
+            // Taboola
+            else if (
+              hostname.includes("taboola.com") ||
+              hostname.includes("taboola")
+            ) {
+              return {
+                source: "taboola",
+                medium: "display",
+                channel: "Taboola",
+                placement: "Digital",
+              };
+            }
+
+            // Other social platforms popular in India
+            else if (
+              hostname.includes("twitter.com") ||
+              hostname.includes("x.com")
+            ) {
+              return {
+                source: "twitter",
+                medium: "social",
+                channel: "Social",
+                placement: "Social",
+              };
+            } else if (hostname.includes("linkedin.com")) {
+              return {
+                source: "linkedin",
+                medium: "social",
+                channel: "Social",
+                placement: "Social",
+              };
+            }
+
+            // ShareChat (popular in India)
+            else if (hostname.includes("sharechat.com")) {
+              return {
+                source: "sharechat",
+                medium: "social",
+                channel: "Social",
+                placement: "Social",
+              };
+            }
+
+            // Email platforms
+            else if (
+              hostname.includes("mail.") ||
+              hostname.includes("email") ||
+              hostname.includes("outlook") ||
+              hostname.includes("gmail") ||
+              hostname.includes("yahoo.com")
+            ) {
+              return {
+                source: "email",
+                medium: "email",
+                channel: "Email",
+                placement: "Email",
+              };
+            }
+
+            // Default referral
+            else {
+              return {
+                source: hostname.replace("www.", ""),
+                medium: "referral",
+                channel: "Referral",
+                placement: "Referral",
+              };
+            }
+          } catch (e) {
+            log("Error parsing referrer:", e);
+            return {
+              source: "direct",
+              medium: "none",
+              channel: "Direct",
+              placement: "Direct",
+            };
+          }
+        }
+
+        // Campaign to Channel Mapping based on your existing data structure
+        function getCampaignChannelMapping(campaign, source) {
+          const mapping = {
+            // Your existing campaigns
+            Desktop_Versio: { channel: "Taboola", placement: "Digital" },
+            ConversionAds: { channel: "Facebook", placement: "FacebookCamp" },
+            adwords_Search: { channel: "AdWords", placement: "Digital" },
+            facebook_ads: { channel: "Facebook", placement: "FacebookCamp" },
+            taboola_ads: { channel: "Taboola", placement: "Digital" },
+
+            // New campaigns for Cedar
+            cedar_festive_night: { channel: "Organic", placement: "Direct" },
+            cedar_launch: { channel: "Organic", placement: "Direct" },
+            navin_cedar: { channel: "Organic", placement: "Direct" },
+          };
+
+          // If we have a mapping for the campaign, use it
+          if (mapping[campaign]) {
+            return mapping[campaign];
+          }
+
+          // Otherwise, infer based on source
+          const sourceMapping = {
+            facebook: { channel: "Facebook", placement: "FacebookCamp" },
+            instagram: { channel: "Facebook", placement: "FacebookCamp" },
+            google: { channel: "AdWords", placement: "Digital" },
+            taboola: { channel: "Taboola", placement: "Digital" },
+            whatsapp: { channel: "WhatsApp", placement: "Social" },
+            youtube: { channel: "YouTube", placement: "Video" },
+          };
+
+          return (
+            sourceMapping[source] || { channel: "Organic", placement: "Direct" }
+          );
+        }
+
+        // Get keyword based on campaign and source
+        function getKeyword(campaign, utmTerm, source) {
+          // Your existing keyword mapping
+          if (campaign === "adwords_Search" && !utmTerm) {
+            return "Navin's medavakkam";
+          }
+
+          // Default keywords for common campaigns
+          const defaultKeywords = {
+            cedar_festive_night: "cedar festive night",
+            cedar_launch: "navin cedar launch",
+            ConversionAds: "navin homes",
+            Desktop_Versio: "apartments chennai",
+          };
+
+          return utmTerm || defaultKeywords[campaign] || "{Keyword}";
+        }
+
+        // Main tracking function
+        function detectAndSetTracking(interactionSource = "") {
+          const urlParams = new URLSearchParams(window.location.search);
+
+          // Get UTM parameters
+          const utmSource = urlParams.get("utm_source");
+          const utmCampaign = urlParams.get("utm_campaign");
+          const utmMedium = urlParams.get("utm_medium");
+          const utmTerm = urlParams.get("utm_term");
+          const utmContent = urlParams.get("utm_content");
+
+          // Get custom PPC parameters (your format)
+          const cstmKeyword = urlParams.get("cstm_ppc_keyword");
+          const cstmPlacement = urlParams.get("cstm_ppc_placement");
+          const cstmDevice = urlParams.get("cstm_ppc_device");
+          const cstmCampaign = urlParams.get("cstm_ppc_campaign");
+          const cstmChannel = urlParams.get("cstm_ppc_channel");
+          const srdParam = urlParams.get("srd");
+
+          // Get click IDs for ads
+          const gclid = urlParams.get("gclid"); // Google Ads
+          const fbclid = urlParams.get("fbclid"); // Facebook Ads
+
+          // Detect source from referrer
+          const referrerData = detectSourceFromReferrer();
+
+          // Determine final values - prioritize custom params, then UTM, then referrer
+          let source =
+            cstmChannel?.toLowerCase() || utmSource || referrerData.source;
+          let medium = utmMedium || (cstmChannel ? "cpc" : referrerData.medium);
+          let campaign = cstmCampaign || utmCampaign || "cedar_website_organic";
+          let keyword = cstmKeyword || utmTerm || "{Keyword}";
+          let placement = cstmPlacement || utmContent || referrerData.placement;
+          let device =
+            cstmDevice ||
+            (/Mobi|Android/i.test(navigator.userAgent) ? "mobile" : "desktop");
+
+          // Special handling for click IDs (indicates paid ads)
+          if (gclid && !utmSource && !cstmChannel) {
+            source = "google";
+            medium = "cpc";
+            campaign = "google_ads_auto";
+          } else if (fbclid && !utmSource && !cstmChannel) {
+            source = "facebook";
+            medium = "cpc";
+            campaign = "facebook_ads_auto";
+          }
+
+          // Add interaction source to tracking
+          if (interactionSource) {
+            source = `${source}_${interactionSource}`;
+          }
+
+          // Get channel and placement mapping (updated for custom params)
+          let channelMapping;
+          if (cstmChannel) {
+            channelMapping = {
+              channel: cstmChannel,
+              placement: cstmPlacement || "FacebookCampaigns",
+            };
+          } else {
+            channelMapping = getCampaignChannelMapping(
+              campaign,
+              utmSource || referrerData.source
+            );
+          }
+
+          // Build complete tracking data
+          const trackingData = {
+            timestamp: new Date().toISOString(),
+            source: source,
+            campaign: campaign,
+            channel: channelMapping.channel,
+            keyword: keyword,
+            placement: placement,
+            medium: medium,
+            device: device,
+            gclid: gclid || "",
+            fbclid: fbclid || "",
+            referrer: document.referrer || "direct",
+            page_url: window.location.href,
+            user_agent: navigator.userAgent,
+            is_ad:
+              gclid ||
+              fbclid ||
+              cstmChannel ||
+              (medium && (medium.includes("cpc") || medium.includes("paid")))
+                ? "Yes"
+                : "No",
+            // Store custom parameters for reference
+            custom_params: {
+              srd: srdParam || "",
+              cstm_keyword: cstmKeyword || "",
+              cstm_placement: cstmPlacement || "",
+              cstm_device: cstmDevice || "",
+              cstm_campaign: cstmCampaign || "",
+              cstm_channel: cstmChannel || "",
+            },
+          };
+
+          log("Complete tracking data:", trackingData);
+
+          // Apply to form fields
+          applyTrackingToForms(trackingData);
+
+          return trackingData;
+        }
+
+        // Apply tracking data to all forms on the page
+        function applyTrackingToForms(trackingData) {
+          // Field mapping for your forms
+          const fieldMappings = [
+            // Source
+            {
+              selectors: ["#source", "#popup-source", 'input[name="source"]'],
+              value: trackingData.source,
+            },
+
+            // Campaign
+            {
+              selectors: [
+                "#campaign",
+                "#popup-campaign",
+                'input[name="campaign"]',
+              ],
+              value: trackingData.campaign,
+            },
+
+            // Channel
+            {
+              selectors: [
+                "#channel",
+                "#popup-channel",
+                'input[name="channel"]',
+              ],
+              value: trackingData.channel,
+            },
+
+            // Keyword
+            {
+              selectors: [
+                "#keyword",
+                "#popup-keyword",
+                'input[name="keyword"]',
+              ],
+              value: trackingData.keyword,
+            },
+
+            // Placement
+            {
+              selectors: [
+                "#placement",
+                "#popup-placement",
+                'input[name="placement"]',
+              ],
+              value: trackingData.placement,
+            },
+
+            // Medium
+            {
+              selectors: ["#medium", "#popup-medium", 'input[name="medium"]'],
+              value: trackingData.medium,
+            },
+
+            // Device
+            {
+              selectors: ["#device", "#popup-device", 'input[name="device"]'],
+              value: trackingData.device,
+            },
+
+            // GCLID
+            {
+              selectors: ["#gclid", "#popup-gclid", 'input[name="gclid"]'],
+              value: trackingData.gclid,
+            },
+
+            // Timestamp
+            {
+              selectors: [
+                "#timestamp",
+                "#popup-timestamp",
+                'input[name="timestamp"]',
+              ],
+              value: trackingData.timestamp,
+            },
+          ];
+
+          // Apply each field mapping
+          fieldMappings.forEach((mapping) => {
+            mapping.selectors.forEach((selector) => {
+              const element = document.querySelector(selector);
+              if (element) {
+                element.value = mapping.value;
+                log(`Set ${selector} to:`, mapping.value);
+              }
+            });
+          });
+        }
+
+        // Auto-send tracking data to Google Sheets (optional)
+        function sendTrackingToSheets(trackingData, isPageView = false) {
+          if (!isPageView) return; // Only send page views, not form interactions
+
+          // Prepare data for Google Sheets
+          const sheetData = {
+            timestamp: trackingData.timestamp,
+            source: trackingData.source,
+            campaign: trackingData.campaign,
+            channel: trackingData.channel,
+            keyword: trackingData.keyword,
+            placement: trackingData.placement,
+            medium: trackingData.medium,
+            device: trackingData.device,
+            gclid: trackingData.gclid,
+            referrer: trackingData.referrer,
+            page_url: trackingData.page_url,
+            user_agent: trackingData.user_agent,
+            is_ad: trackingData.is_ad,
+            event_type: "page_view",
+          };
+
+          // Send to Google Sheets
+          const params = new URLSearchParams(sheetData);
+          fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, {
+            method: "GET",
+          })
+            .then((response) => {
+              log("Tracking data sent to sheets:", response);
+            })
+            .catch((error) => {
+              log("Error sending tracking data:", error);
+            });
+        }
+
+        // Initialize tracking when page loads
+        function initTracking() {
+          // Set initial tracking
+          const trackingData = detectAndSetTracking();
+
+          // Optionally send page view to sheets
+          // sendTrackingToSheets(trackingData, true);
+
+          // Re-detect on form interactions
+          document.addEventListener(
+            "focus",
+            function (e) {
+              if (
+                e.target.tagName === "INPUT" ||
+                e.target.tagName === "TEXTAREA"
+              ) {
+                detectAndSetTracking("form_interaction");
+              }
+            },
+            true
+          );
+
+          // Re-detect when modal opens
+          const observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+              if (
+                mutation.type === "attributes" &&
+                mutation.attributeName === "class"
+              ) {
+                const target = mutation.target;
+                if (
+                  target.classList &&
+                  target.classList.contains("active") &&
+                  target.id === "enquiry-modal"
+                ) {
+                  detectAndSetTracking("modal_open");
+                }
+              }
+            });
+          });
+
+          const modal = document.getElementById("enquiry-modal");
+          if (modal) {
+            observer.observe(modal, { attributes: true });
+          }
+
+          // Make functions available globally for debugging
+          if (DEBUG) {
+            window.NavinTracker = {
+              detect: detectAndSetTracking,
+              getData: () => detectAndSetTracking(),
+              sendToSheets: sendTrackingToSheets,
+            };
+          }
+
+          log("Traffic tracking initialized successfully");
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initTracking);
+        } else {
+          initTracking();
+        }
+      })();
+    </script>
   </body>
 </html>
